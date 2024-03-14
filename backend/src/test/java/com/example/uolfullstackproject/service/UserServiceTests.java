@@ -4,16 +4,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 
+import com.example.uolfullstackproject.exception.AlreadyExistsException;
+import com.example.uolfullstackproject.exception.NotFoundException;
 import com.example.uolfullstackproject.model.entity.User;
 import com.example.uolfullstackproject.model.entity.UserStatus;
 import com.example.uolfullstackproject.model.repository.UserRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -99,5 +104,157 @@ public class UserServiceTests {
     Mockito
         .verify(userRepository, Mockito.times(1))
         .findAll(any(Pageable.class));
+  }
+
+  @Test
+  @DisplayName("Verifica se é retornado a entidade User por seu Id")
+  public void findUserByIdTest() {
+    Mockito
+        .when(userRepository.findById(any()))
+        .thenReturn(Optional.of(mockUser01));
+
+    User serviceResponse = userService.findUserById(mockUserId01);
+
+    assertEquals(mockUser01, serviceResponse);
+    assertEquals(mockUserId01, serviceResponse.getId());
+    assertEquals(mockUser01.getName(), serviceResponse.getName());
+    assertEquals(mockUser01.getEmail(), serviceResponse.getEmail());
+    assertEquals(mockUser01.getCpf(), serviceResponse.getCpf());
+    assertEquals(mockUser01.getTelephone(), serviceResponse.getTelephone());
+    assertEquals(mockUser01.getStatus(), serviceResponse.getStatus());
+
+    Mockito
+        .verify(userRepository, Mockito.times(1))
+        .findById(any(UUID.class));
+  }
+
+  @Test
+  @DisplayName("Verifica se ocorre o disparo de uma exceção caso não se encontre uma entidade User por seu Id")
+  public void findUserByIdTestError() {
+    Mockito
+        .when(userRepository.findById(mockUserId01))
+        .thenReturn(Optional.empty());
+
+    assertThrows(NotFoundException.class, () -> userService.findUserById(mockUserId01));
+
+    Mockito
+        .verify(userRepository, Mockito.times(1))
+        .findById(any(UUID.class));
+  }
+
+  @Test
+  @DisplayName("Verifica se é criado uma a entidade User")
+  public void createUserTest() {
+    Mockito
+        .when(userRepository.findByCpf(mockUser01.getCpf()))
+        .thenReturn(Optional.empty());
+
+    Mockito
+        .when(userRepository.save(any(User.class)))
+        .thenAnswer(invocation -> invocation.getArgument(0));
+
+    User serviceResponse = userService.createUser(mockUser01);
+
+    assertNotNull(serviceResponse);
+    assertEquals(mockUserId01, serviceResponse.getId());
+    assertEquals(mockUser01.getName(), serviceResponse.getName());
+    assertEquals(mockUser01.getEmail(), serviceResponse.getEmail());
+    assertEquals(mockUser01.getCpf(), serviceResponse.getCpf());
+    assertEquals(mockUser01.getTelephone(), serviceResponse.getTelephone());
+    assertEquals(mockUser01.getStatus(), serviceResponse.getStatus());
+
+    Mockito
+        .verify(userRepository)
+        .findByCpf(any(String.class));
+    Mockito
+        .verify(userRepository)
+        .save(any(User.class));
+  }
+
+  @Test
+  @DisplayName("Verifica se é disparado uma exceção ao tentar criar uma a entidade User já existente")
+  public void createSubjectTestError() {
+    Mockito
+        .when(userRepository.findByCpf(mockUser01.getCpf()))
+        .thenReturn(Optional.of(mockUser01));
+
+    assertThrows(AlreadyExistsException.class, () -> userService.createUser(mockUser01));
+
+    Mockito
+        .verify(userRepository)
+        .findByCpf(any(String.class));
+  }
+
+  @Test
+  @DisplayName("Verifica se é retornado uma a entidade User atualizada")
+  public void updateUserTest() {
+    Mockito
+        .when(userRepository.findById(mockUserId01))
+        .thenReturn(Optional.of(mockUser01));
+
+    Mockito
+        .when(userRepository.save(any(User.class)))
+        .thenAnswer(invocation -> invocation.getArgument(0));
+
+    User serviceResponse = userService.updateUser(mockUserId01, mockUser02);
+
+    assertNotNull(serviceResponse);
+    assertNotEquals(mockUser02.getId(), serviceResponse.getId());
+    assertEquals(mockUserId01, serviceResponse.getId());
+    assertEquals(mockUser02.getName(), serviceResponse.getName());
+    assertEquals(mockUser02.getEmail(), serviceResponse.getEmail());
+    assertNotEquals(mockUser02.getCpf(), serviceResponse.getCpf());
+    assertEquals(mockUser01.getCpf(), serviceResponse.getCpf());
+    assertEquals(mockUser02.getTelephone(), serviceResponse.getTelephone());
+    assertEquals(mockUser02.getStatus(), serviceResponse.getStatus());
+
+    Mockito
+        .verify(userRepository)
+        .findById(any(UUID.class));
+    Mockito
+        .verify(userRepository)
+        .save(any(User.class));
+  }
+
+  @Test
+  @DisplayName("Verifica se é disparado uma exceção ao tentar atualizar uma a entidade User não existente")
+  public void updateUserTestError() {
+    Mockito
+        .when(userRepository.findById(mockUserId01))
+        .thenReturn(Optional.empty());
+
+    assertThrows(NotFoundException.class, () -> userService.updateUser(mockUserId01, mockUser02));
+
+    Mockito
+        .verify(userRepository)
+        .findById(any(UUID.class));
+  }
+
+  @Test
+  @DisplayName("Verifica se uma entidade User foi deletada do banco de dados")
+  public void deleteUserTest() {
+    Mockito
+        .when(userRepository.findById(mockUserId01))
+        .thenReturn(Optional.of(mockUser01));
+
+    userService.deleteUser(mockUserId01);
+
+    Mockito
+        .verify(userRepository)
+        .deleteById(any(UUID.class));
+  }
+
+  @Test
+  @DisplayName("Verifica se é disparado uma exceção ao tentar deletar uma a entidade User não existente")
+  public void deleteUserTestError() {
+    Mockito
+        .when(userRepository.findById(mockUserId01))
+        .thenReturn(Optional.empty());
+
+    assertThrows(NotFoundException.class, () -> userService.deleteUser(mockUserId01));
+
+    Mockito
+        .verify(userRepository)
+        .findById(any(UUID.class));
   }
 }

@@ -50,6 +50,7 @@ public class UserService implements UserServiceInterface {
     userFound.setName(user.getName());
     userFound.setEmail(user.getEmail());
     userFound.setTelephone(user.getTelephone());
+
     return userRepository.save(userFound);
   }
 
