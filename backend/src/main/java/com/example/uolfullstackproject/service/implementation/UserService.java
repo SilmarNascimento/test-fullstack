@@ -3,6 +3,7 @@ package com.example.uolfullstackproject.service.implementation;
 import com.example.uolfullstackproject.exception.AlreadyExistsException;
 import com.example.uolfullstackproject.exception.NotFoundException;
 import com.example.uolfullstackproject.model.entity.User;
+import com.example.uolfullstackproject.model.entity.UserStatus;
 import com.example.uolfullstackproject.model.repository.UserRepository;
 import com.example.uolfullstackproject.service.UserServiceInterface;
 import java.util.UUID;
@@ -41,12 +42,21 @@ public class UserService implements UserServiceInterface {
   }
 
   @Override
-  public User updateUser(UUID subjectId, User subject) {
-    return null;
+  public User updateUser(UUID userId, User user) {
+    User userFound = userRepository.findById(userId)
+        .orElseThrow(() -> new NotFoundException("Usuário não encontrado!"));
+
+    userFound.setStatus(user.getStatus());
+    userFound.setName(user.getName());
+    userFound.setEmail(user.getEmail());
+    userFound.setTelephone(user.getTelephone());
+    return userRepository.save(userFound);
   }
 
   @Override
-  public void deleteUser(UUID subjectId) {
-
+  public void deleteUser(UUID userId) {
+     userRepository.findById(userId)
+        .orElseThrow(() -> new NotFoundException("Usuário não encontrado!"));
+     userRepository.deleteById(userId);
   }
 }
