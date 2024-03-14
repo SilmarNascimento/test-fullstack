@@ -58,7 +58,7 @@ public class UserServiceTests {
         "Cainã Jucá",
         "caina.juca@gmail.com",
         "26252833756",
-        "27999999008",
+        "27997777008",
         UserStatus.valueOf("ATIVO")
     );
     mockUser02 = new User(
@@ -66,7 +66,7 @@ public class UserServiceTests {
         "William Barbosa",
         "will.barbosa@gmail.com",
         "13152742647",
-        "27999999008",
+        "27982820082",
         UserStatus.valueOf("AGUARDANDO_ATIVACAO")
     );
   }
