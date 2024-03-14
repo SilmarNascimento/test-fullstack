@@ -41,7 +41,7 @@ public class User {
     this.status = status;
   }
 
-  public User parseUser(UserInputDto userDto) {
+  public static User parseUser(UserInputDto userDto) {
     return new User(
         userDto.name(),
         userDto.email(),

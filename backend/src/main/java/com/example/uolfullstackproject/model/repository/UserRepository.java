@@ -13,8 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID> {
   @NonNull
-  @Query("SELECT user FROM User user WHERE (:query IS NULL OR user.name LIKE %:query%)")
-  Page<User> findAll(@NonNull Pageable pageable, String query);
+  Page<User> findAll(@NonNull Pageable pageable);
 
   Optional<User> findByCpf(String cpf);
 }
