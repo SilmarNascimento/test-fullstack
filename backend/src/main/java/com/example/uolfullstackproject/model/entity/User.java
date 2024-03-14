@@ -1,5 +1,7 @@
 package com.example.uolfullstackproject.model.entity;
 
+import com.example.uolfullstackproject.controller.dto.UserInputDto;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -21,11 +23,31 @@ public class User {
 
   private String name;
 
+  @Column(unique = true)
   private String email;
 
+  @Column(unique = true, updatable = false)
   private String cpf;
 
   private String telephone;
 
   private UserStatus status;
+
+  public User(String name, String email, String cpf, String telephone, UserStatus status) {
+    this.name = name;
+    this.email = email;
+    this.cpf = cpf;
+    this.telephone = telephone;
+    this.status = status;
+  }
+
+  public User parseUser(UserInputDto userDto) {
+    return new User(
+        userDto.name(),
+        userDto.email(),
+        userDto.cpf(),
+        userDto.telephone(),
+        UserStatus.valueOf(userDto.status())
+    );
+  }
 }

@@ -1,6 +1,7 @@
 package com.example.uolfullstackproject.model.repository;
 
 import com.example.uolfullstackproject.model.entity.User;
+import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
   @NonNull
   @Query("SELECT user FROM User user WHERE (:query IS NULL OR user.name LIKE %:query%)")
   Page<User> findAll(@NonNull Pageable pageable, String query);
+
+  Optional<User> findByCpf(String cpf);
 }
