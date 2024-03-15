@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />
   }, {
     path: "/edit/users/:userId",
-    element: <EditUserForm tag={"Salvar"} />
+    element: <EditUserForm />
   }, {
     path: "/create/users",
     element: <CreateUserForm tag={"Criar"} />

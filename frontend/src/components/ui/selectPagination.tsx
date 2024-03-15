@@ -1,6 +1,6 @@
 import * as SelectPrimitive from '@radix-ui/react-select'
 import { Check, ChevronDown } from 'lucide-react'
-import { ComponentProps } from 'react'
+import { ComponentProps, forwardRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
@@ -25,12 +25,14 @@ export interface SelectTriggerProps
   children?: never
 }
 
-export function SelectTrigger({ className, ...props }: SelectTriggerProps) {
+export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
+  ({ className, ...props }, ref) => {
   const [searchParams] = useSearchParams();
   const pageSize = searchParams.get('pageSize') ?? "10";
   
   return (
     <SelectPrimitive.Trigger
+    ref={ref}
       className={twMerge(
         'px-3 py-1.5 tabular-nums rounded-md border border-zinc-800 bg-zinc-50/50 flex items-center gap-2.5',
         className,
@@ -45,8 +47,8 @@ export function SelectTrigger({ className, ...props }: SelectTriggerProps) {
         <ChevronDown className="size-4" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
-  )
-}
+  );
+});
 
 export interface SelectContentProps
   extends ComponentProps<typeof SelectPrimitive.Content> {}

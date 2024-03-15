@@ -10,6 +10,10 @@ interface userTableProps {
 export function UserTable( { userInformation } : userTableProps) {
   const navigate = useNavigate();
 
+  function handleCreateUser() {
+    navigate("/create/users")
+  }
+
   function handleEditUser(userId: string) {
     navigate(`/edit/users/${userId}`);
   }
@@ -21,7 +25,7 @@ export function UserTable( { userInformation } : userTableProps) {
           <span>Listagem de usuários</span>
           <span>Escolha um cliente para visualizar os detalhes</span>
         </div>
-        <Button>
+        <Button onClick={handleCreateUser}>
           <span>Novo Cliente</span>
         </Button>
       </div>
