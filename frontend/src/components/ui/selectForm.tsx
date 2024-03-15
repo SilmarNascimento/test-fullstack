@@ -1,46 +1,30 @@
 import * as SelectPrimitive from '@radix-ui/react-select'
 import { Check, ChevronDown } from 'lucide-react'
 import { ComponentProps } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { twMerge } from 'tailwind-merge'
 
-export interface SelectProps
-  extends ComponentProps<typeof SelectPrimitive.Root> {}
+export interface SelectProps extends ComponentProps<typeof SelectPrimitive.Root> {}
 
 export function Select(props: SelectProps) {
-  const [, setSearchParams] = useSearchParams();
-
-  function handleSelectChange(value: string) {
-    setSearchParams(params => {
-      params.set('page', '1')
-      params.set('pageSize', value)
-
-      return params
-    })
-  }
-  return <SelectPrimitive.Root {...props} onValueChange={handleSelectChange}/>
+  return <SelectPrimitive.Root {...props}/>
 }
 
 export interface SelectTriggerProps
   extends ComponentProps<typeof SelectPrimitive.Trigger> {
   children?: never
+  prevStatus?: string | undefined
 }
 
-export function SelectTrigger({ className, ...props }: SelectTriggerProps) {
-  const [searchParams] = useSearchParams();
-  const pageSize = searchParams.get('pageSize') ?? "10";
-  
+export function SelectTrigger({prevStatus, className, ...props }: SelectTriggerProps) {  
   return (
     <SelectPrimitive.Trigger
       className={twMerge(
-        'px-3 py-1.5 text-zinc-100 tabular-nums rounded-md border border-zinc-800 bg-zinc-800/50 flex items-center gap-2.5',
+        'px-3 py-1.5 tabular-nums rounded-md border border-zinc-800 bg-zinc-50/50 flex items-center gap-2.5 justify-between',
         className,
       )}
       {...props}
     >
-      <SelectPrimitive.Value placeholder={pageSize} >
-        {pageSize}
-      </SelectPrimitive.Value>
+      <SelectPrimitive.Value placeholder={ prevStatus ? prevStatus : "Status"}/>
 
       <SelectPrimitive.Icon className="text-zinc-600">
         <ChevronDown className="size-4" />
