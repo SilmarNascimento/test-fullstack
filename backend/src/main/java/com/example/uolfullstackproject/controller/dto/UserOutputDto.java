@@ -10,7 +10,7 @@ public record UserOutputDto(
   String email,
   String cpf,
   String telephone,
-  UserStatus status
+  String status
 ) {
   public static UserOutputDto parseDto(User user) {
     return new UserOutputDto(
@@ -19,7 +19,7 @@ public record UserOutputDto(
         user.getEmail(),
         user.getCpf(),
         user.getTelephone(),
-        user.getStatus()
+        user.getStatus().getLabel()
     );
   }
 }

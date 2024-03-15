@@ -65,7 +65,7 @@ public class UserControllerTests {
         "caina.juca@gmail.com",
         "26252833756",
         "27997777008",
-        UserStatus.valueOf("ATIVO")
+        UserStatus.parseStatus("Ativo")
     );
 
     mockUser02 = new User(
@@ -74,7 +74,7 @@ public class UserControllerTests {
         "will.barbosa@gmail.com",
         "13152742647",
         "27982820082",
-        UserStatus.valueOf("AGUARDANDO_ATIVACAO")
+        UserStatus.parseStatus("Aguardando ativação")
     );
   }
 
@@ -118,13 +118,13 @@ public class UserControllerTests {
         .andExpect(jsonPath("$.data.[0].email").value(mockUser01.getEmail()))
         .andExpect(jsonPath("$.data.[0].cpf").value(mockUser01.getCpf()))
         .andExpect(jsonPath("$.data.[0].telephone").value(mockUser01.getTelephone()))
-        .andExpect(jsonPath("$.data.[0].status").value(mockUser01.getStatus().toString()))
+        .andExpect(jsonPath("$.data.[0].status").value(mockUser01.getStatus().getLabel()))
         .andExpect(jsonPath("$.data.[1].id").value(mockUserId02.toString()))
         .andExpect(jsonPath("$.data.[1].name").value(mockUser02.getName()))
         .andExpect(jsonPath("$.data.[1].email").value(mockUser02.getEmail()))
         .andExpect(jsonPath("$.data.[1].cpf").value(mockUser02.getCpf()))
         .andExpect(jsonPath("$.data.[1].telephone").value(mockUser02.getTelephone()))
-        .andExpect(jsonPath("$.data.[1].status").value(mockUser02.getStatus().toString()));
+        .andExpect(jsonPath("$.data.[1].status").value(mockUser02.getStatus().getLabel()));
 
     ArgumentCaptor<Integer> pageNumberCaptor = ArgumentCaptor.forClass(Integer.class);
     ArgumentCaptor<Integer> pageSizeCaptor = ArgumentCaptor.forClass(Integer.class);
@@ -177,13 +177,13 @@ public class UserControllerTests {
         .andExpect(jsonPath("$.data.[0].email").value(mockUser01.getEmail()))
         .andExpect(jsonPath("$.data.[0].cpf").value(mockUser01.getCpf()))
         .andExpect(jsonPath("$.data.[0].telephone").value(mockUser01.getTelephone()))
-        .andExpect(jsonPath("$.data.[0].status").value(mockUser01.getStatus().toString()))
+        .andExpect(jsonPath("$.data.[0].status").value(mockUser01.getStatus().getLabel()))
         .andExpect(jsonPath("$.data.[1].id").value(mockUserId02.toString()))
         .andExpect(jsonPath("$.data.[1].name").value(mockUser02.getName()))
         .andExpect(jsonPath("$.data.[1].email").value(mockUser02.getEmail()))
         .andExpect(jsonPath("$.data.[1].cpf").value(mockUser02.getCpf()))
         .andExpect(jsonPath("$.data.[1].telephone").value(mockUser02.getTelephone()))
-        .andExpect(jsonPath("$.data.[1].status").value(mockUser02.getStatus().toString()));
+        .andExpect(jsonPath("$.data.[1].status").value(mockUser02.getStatus().getLabel()));
 
     ArgumentCaptor<Integer> pageNumberCaptor = ArgumentCaptor.forClass(Integer.class);
     ArgumentCaptor<Integer> pageSizeCaptor = ArgumentCaptor.forClass(Integer.class);
@@ -212,7 +212,7 @@ public class UserControllerTests {
         .andExpect(jsonPath("$.email").value(mockUser01.getEmail()))
         .andExpect(jsonPath("$.cpf").value(mockUser01.getCpf()))
         .andExpect(jsonPath("$.telephone").value(mockUser01.getTelephone()))
-        .andExpect(jsonPath("$.status").value(mockUser01.getStatus().toString()));
+        .andExpect(jsonPath("$.status").value(mockUser01.getStatus().getLabel()));
 
     Mockito
         .verify(userService, Mockito.times(1))
@@ -265,7 +265,7 @@ public class UserControllerTests {
         .andExpect(jsonPath("$.email").value(mockUser01.getEmail()))
         .andExpect(jsonPath("$.cpf").value(mockUser01.getCpf()))
         .andExpect(jsonPath("$.telephone").value(mockUser01.getTelephone()))
-        .andExpect(jsonPath("$.status").value(mockUser01.getStatus().toString()));
+        .andExpect(jsonPath("$.status").value(mockUser01.getStatus().getLabel()));
 
     Mockito
         .verify(userService, Mockito.times(1))
@@ -313,7 +313,7 @@ public class UserControllerTests {
         "will.barbosa@gmail.com",
         "13152742647",
         "27982820082",
-        "AGUARDANDO_ATIVACAO"
+        "Aguardando ativação"
     );
 
     String endpoint = baseUrl + "/" + mockUserId01.toString();
@@ -329,7 +329,7 @@ public class UserControllerTests {
         .andExpect(jsonPath("$.email").value(mockUser01.getEmail()))
         .andExpect(jsonPath("$.cpf").value(mockUser01.getCpf()))
         .andExpect(jsonPath("$.telephone").value(mockUser01.getTelephone()))
-        .andExpect(jsonPath("$.status").value(mockUser01.getStatus().toString()));
+        .andExpect(jsonPath("$.status").value(mockUser01.getStatus().getLabel()));
 
     Mockito
         .verify(userService, Mockito.times(1))
@@ -348,7 +348,7 @@ public class UserControllerTests {
         "will.barbosa@gmail.com",
         "13152742647",
         "27982820082",
-        "AGUARDANDO_ATIVACAO"
+        "Aguardando ativação"
     );
 
     String endpoint = baseUrl + "/" + mockUserId01.toString();

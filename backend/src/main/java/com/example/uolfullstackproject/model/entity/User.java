@@ -47,7 +47,7 @@ public class User {
         userDto.email(),
         userDto.cpf(),
         userDto.telephone(),
-        UserStatus.valueOf(userDto.status())
+        UserStatus.parseStatus(userDto.status())
     );
   }
 }
