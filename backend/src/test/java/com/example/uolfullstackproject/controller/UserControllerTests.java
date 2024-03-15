@@ -224,14 +224,14 @@ public class UserControllerTests {
   public void findSubjectByIdTestNotFoundError() throws Exception {
     Mockito
         .when(userService.findUserById(mockUserId01))
-        .thenThrow(new NotFoundException("Usuário não encontrado"));
+        .thenThrow(new NotFoundException("Usuário não encontrado!"));
 
     String endpoint = baseUrl + "/" + mockUserId01.toString();
     ResultActions httpResponse = mockMvc.perform(get(endpoint));
 
     httpResponse
         .andExpect(status().is(404))
-        .andExpect(jsonPath("$").value("Usuário não encontrado"));
+        .andExpect(jsonPath("$").value("Usuário não encontrado!"));
 
     Mockito
         .verify(userService, Mockito.times(1))
@@ -387,7 +387,7 @@ public class UserControllerTests {
   @DisplayName("Verifica se na deleção é disparado uma exceção quanto não se encontra uma entidade User pelo seu id")
   public void deleteUserTestNotFoundError() throws Exception {
     Mockito
-        .doThrow(new NotFoundException("Usuário não encontrado"))
+        .doThrow(new NotFoundException("Usuário não encontrado!"))
         .when(userService).deleteUser(mockUserId01);
 
 
@@ -396,7 +396,7 @@ public class UserControllerTests {
 
     httpResponse
         .andExpect(status().is(404))
-        .andExpect(jsonPath("$").value("Usuário não encontrado"));
+        .andExpect(jsonPath("$").value("Usuário não encontrado!"));
 
     Mockito
         .verify(userService, Mockito.times(1))
