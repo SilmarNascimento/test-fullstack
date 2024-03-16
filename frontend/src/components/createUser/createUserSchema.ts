@@ -43,7 +43,15 @@ export function validateCpf(cpf: string): boolean {
     }
     
     return true;
-}	
+}
+
+export function validateTelephone(telephone: string): boolean {
+  telephone = telephone.replace(/[^\d]+/g,'');
+  if (telephone.length !== 11) {
+    return false;
+  }
+  return true;
+}
 		
 
 export const createUserSchema = z.object({
@@ -51,6 +59,6 @@ export const createUserSchema = z.object({
   email: z.string().email({ message: "endereço de email inválido" }),
   cpf: z.string()
     .refine(validateCpf, { message: "Número de CPF inválido"}),
-  telephone: z.string().length(11, { message: "Número de telefone inválido"}),
+  telephone: z.string().refine(validateTelephone, { message: "Número de telefone inválido"}),
   status: z.enum(["Ativo", "Inativo", "Aguardando ativação", "Desativado"])
 });
