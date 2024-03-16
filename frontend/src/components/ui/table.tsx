@@ -42,7 +42,6 @@ export function TableBody(props: TableBodyProps) {
     <tbody
       {...props}
       className={twMerge(
-        '[&_tr:last-child]:border-0',
         props.className,
       )}
     />

@@ -68,7 +68,7 @@ export function UserInformationTable( { userInformation } : userTableProps) {
 
   return (
     <>
-      <div className="flex justify-between items-center m-2">
+      <div className="flex justify-between items-center my-8">
         <div className="flex flex-col gap-2">
           <span className="font-medium text-gray-600 text-lg">
             Listagem de usuários
