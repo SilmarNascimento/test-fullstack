@@ -3,7 +3,7 @@ import { Header } from "../components/header";
 import { useSearchParams } from "react-router-dom";
 import { UserPageResponse } from "../types/userPageResponse";
 import { Pagination } from "../components/pagination";
-import { UserInformationTable } from "../components/userInformationTable";
+import { UserInformationTable } from "../components/userInformationTable/userInformationTable";
 
 export function Home() {
   const [searchParams] = useSearchParams();

@@ -92,7 +92,7 @@ export function EditUserForm() {
 
   useEffect(() => {
     function hasChangedValues(): boolean {
-      const updatedFormValues: FormUserSchema = watch();  
+      const updatedFormValues = watch();  
 
       if (userFoundResponse) {    
         const keys = Object.keys(updatedFormValues) as (keyof FormUserSchema)[];
@@ -171,16 +171,20 @@ export function EditUserForm() {
         </p>
         </div>
 
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex items-center justify-start gap-8">
           <Button
             disabled={formState.isSubmitting  || !hasChanged}
             variant="primary"
             type="submit"
+            className="w-32 flex flex-row justify-center gap-3 text-sm"
           >
             {formState.isSubmitting ? <Loader2 className="size-3 animate-spin" /> : <Check className="size-3" />}
             <span>Salvar</span>
           </Button>
-          <Button onClick={handleGoBack}>
+          <Button
+            onClick={handleGoBack}
+            className="w-32 flex flex-row justify-center gap-3 text-sm"
+          >
             <span>Voltar</span>
           </Button>
         </div>

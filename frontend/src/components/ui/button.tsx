@@ -7,9 +7,9 @@ const button = tv({
   variants: {
     variant: {
       default:
-        'py-1.5 px-2.5 rounded-md border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-slate-100',
+        'py-2 px-2.5 rounded-md border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-slate-100',
       primary:
-        'py-1.5 px-2.5 rounded-md border border-amber-500 bg-amber-500 text-slate-100',
+        'py-2 px-2.5 rounded-md border border-amber-500 bg-amber-500 text-slate-100',
     },
     size: {
       default: '',

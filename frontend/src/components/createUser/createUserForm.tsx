@@ -142,16 +142,20 @@ export function CreateUserForm() {
         </p>
         </div>
 
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex items-center justify-start gap-8">
           <Button
             disabled={formState.isSubmitting}
             variant="primary"
             type="submit"
+            className="w-32 flex flex-row justify-center gap-3 text-sm"
           >
-            {formState.isSubmitting ? <Loader2 className="size-3 animate-spin" /> : <Check className="size-3" />}
+            {formState.isSubmitting ? <Loader2 className="size-3 animate-spin" /> : <Check className="size-4" />}
             <span>Criar</span>
           </Button>
-          <Button onClick={handleGoBack}>
+          <Button
+            onClick={handleGoBack}
+            className="w-32 flex flex-row justify-center gap-3 text-sm"
+          >
             <span>Voltar</span>
           </Button>
         </div>

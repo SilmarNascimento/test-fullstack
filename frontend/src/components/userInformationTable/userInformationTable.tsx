@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
-import { Button } from "./ui/button"
-import { Table, TableBody, TableCell, TableRow } from "./ui/table"
-import { User } from "../types/user";
+import { Button } from "../ui/button"
+import { Table, TableBody, TableCell, TableRow } from "../ui/table"
+import { User } from "../../types/user";
 
 interface userTableProps {
   userInformation: User[] | undefined
@@ -52,7 +52,11 @@ export function UserInformationTable( { userInformation } : userTableProps) {
                   </div>
                 </TableCell>
                 <TableCell className="text-right">
-                  <Button size="icon" className="mx-0.5" onClick={() => handleEditUser(user.id)}>
+                  <Button
+                    size="icon"
+                    className="w-32 flex flex-row justify-center gap-3 text-sm"
+                    onClick={() => handleEditUser(user.id)}
+                  >
                     <span>Editar</span>
                   </Button>
                 </TableCell>
