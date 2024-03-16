@@ -8,7 +8,7 @@ export function Table(props: TableProps) {
     <table
       {...props}
       className={twMerge(
-        'w-full text-sm border-t-2 border-b-2 border-zinc-800',
+        'w-full text-sm',
         props.className,
       )}
     />

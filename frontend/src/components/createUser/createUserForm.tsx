@@ -147,7 +147,7 @@ export function CreateUserForm() {
             disabled={formState.isSubmitting}
             variant="primary"
             type="submit"
-            className="w-32 flex flex-row justify-center gap-3 text-sm"
+            className="w-32 flex flex-row justify-center gap-2 text-sm"
           >
             {formState.isSubmitting ? <Loader2 className="size-3 animate-spin" /> : <Check className="size-4" />}
             <span>Criar</span>

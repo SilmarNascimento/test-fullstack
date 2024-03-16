@@ -28,7 +28,7 @@ export function Home() {
   }
 
   return (
-    <div className="max-w-[1200px] m-auto">
+    <div className="max-w-[1200px] m-auto space-y-2">
       <Header />
       <UserInformationTable userInformation={userPageResponse?.data}/>
       {userPageResponse && <Pagination pages={userPageResponse.pages} items={userPageResponse.pageItems} page={page} totalItems={userPageResponse.totalItems}/>}
