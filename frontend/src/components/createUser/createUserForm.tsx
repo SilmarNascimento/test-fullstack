@@ -50,7 +50,8 @@ export function CreateUserForm() {
       if (response.status === 201) {
         queryClient.invalidateQueries({
           queryKey: ['get-users'],
-        })
+        });
+        navigate("/");
       }
 
       if (response.status === 400) {
@@ -66,6 +67,7 @@ export function CreateUserForm() {
 
   async function handleCreateUser(data: CreateUserSchema) {
     console.log(data);
+    console.log(formState?.errors);
     await createUser.mutateAsync(data);
   }
 
@@ -73,10 +75,15 @@ export function CreateUserForm() {
     navigate("/")
   }
 
+  if (formState.errors) {
+    console.log(formState.errors);
+    
+  }
+
   return (
     <FormProvider {...formMethods}>
-      <form onSubmit={handleSubmit(handleCreateUser)} className="w-full space-y-6">
-        <div className="space-y-2">
+      <form onSubmit={handleSubmit(handleCreateUser)} className="w-full space-y-3">
+        <div className="space-y-1">
           <input 
             {...register('name')}
             id="name" 
@@ -84,12 +91,12 @@ export function CreateUserForm() {
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
-          {formState.errors?.name && (
-            <p className="text-sm text-red-400">{formState.errors.name.message}</p>
-          )}
+          <p className={`text-sm ${formState.errors?.name ? 'text-red-400' : 'text-transparent'}`}>
+            {formState.errors?.name ? formState.errors.name.message : '\u00A0'}
+          </p>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1">
           <input 
             {...register('email')}
             id="email" 
@@ -97,12 +104,12 @@ export function CreateUserForm() {
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
-          {formState.errors?.name && (
-            <p className="text-sm text-red-400">{formState.errors.name.message}</p>
-          )}
+          <p className={`text-sm ${formState.errors?.email ? 'text-red-400' : 'text-transparent'}`}>
+            {formState.errors?.email ? formState.errors.email.message : '\u00A0'}
+          </p>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1">
           <input 
             {...register('cpf')}
             id="cpf" 
@@ -110,12 +117,12 @@ export function CreateUserForm() {
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
-          {formState.errors?.name && (
-            <p className="text-sm text-red-400">{formState.errors.name.message}</p>
-          )}
+          <p className={`text-sm ${formState.errors?.cpf ? 'text-red-400' : 'text-transparent'}`}>
+            {formState.errors?.cpf ? formState.errors.cpf.message : '\u00A0'}
+          </p>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1">
           <input 
             {...register('telephone')}
             id="name" 
@@ -123,14 +130,16 @@ export function CreateUserForm() {
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
-          {formState.errors?.name && (
-            <p className="text-sm text-red-400">{formState.errors.name.message}</p>
-          )}
+          <p className={`text-sm ${formState.errors?.telephone ? 'text-red-400' : 'text-transparent'}`}>
+            {formState.errors?.telephone ? formState.errors.telephone.message : '\u00A0'}
+          </p>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-1">
         <Select />
-        {formState.errors?.name && <p className="text-sm text-red-400">{formState.errors.name.message}</p>}
+        <p className={`text-sm ${formState.errors?.status ? 'text-red-400' : 'text-transparent'}`}>
+          {formState.errors?.status ? formState.errors.status.message : '\u00A0'}
+        </p>
         </div>
 
         <div className="flex items-center justify-end gap-2">

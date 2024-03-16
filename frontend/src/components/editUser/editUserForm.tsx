@@ -98,9 +98,9 @@ export function EditUserForm() {
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
-          {formState.errors?.name && (
-            <p className="text-sm text-red-400">{formState.errors.name.message}</p>
-          )}
+          <p className={`text-sm ${formState.errors?.name ? 'text-red-400' : 'text-transparent'}`}>
+            {formState.errors?.name ? formState.errors.name.message : '\u00A0'}
+          </p>
         </div>
 
         <div className="space-y-2">
@@ -111,9 +111,9 @@ export function EditUserForm() {
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
-          {formState.errors?.name && (
-            <p className="text-sm text-red-400">{formState.errors.name.message}</p>
-          )}
+          <p className={`text-sm ${formState.errors?.email ? 'text-red-400' : 'text-transparent'}`}>
+            {formState.errors?.email ? formState.errors.email.message : '\u00A0'}
+          </p>
         </div>
 
         <div className="space-y-2">
@@ -124,9 +124,9 @@ export function EditUserForm() {
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
-          {formState.errors?.name && (
-            <p className="text-sm text-red-400">{formState.errors.name.message}</p>
-          )}
+          <p className={`text-sm ${formState.errors?.cpf ? 'text-red-400' : 'text-transparent'}`}>
+            {formState.errors?.cpf ? formState.errors.cpf.message : '\u00A0'}
+          </p>
         </div>
 
         <div className="space-y-2">
@@ -137,14 +137,16 @@ export function EditUserForm() {
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
-          {formState.errors?.name && (
-            <p className="text-sm text-red-400">{formState.errors.name.message}</p>
-          )}
+          <p className={`text-sm ${formState.errors?.telephone ? 'text-red-400' : 'text-transparent'}`}>
+            {formState.errors?.telephone ? formState.errors.telephone.message : '\u00A0'}
+          </p>
         </div>
 
         <div className="space-y-2">
         <Select defaultValue={userFoundResponse?.status} />      
-        {formState.errors?.name && <p className="text-sm text-red-400">{formState.errors.name.message}</p>}
+        <p className={`text-sm ${formState.errors?.status ? 'text-red-400' : 'text-transparent'}`}>
+          {formState.errors?.status ? formState.errors.status.message : '\u00A0'}
+        </p>
         </div>
 
         <div className="flex items-center justify-end gap-2">
