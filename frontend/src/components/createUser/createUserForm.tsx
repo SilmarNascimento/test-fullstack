@@ -8,12 +8,10 @@ import { Check, Loader2 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { createUserSchema } from "./createUserSchema"
 
-
-
 type CreateUserSchema = z.infer<typeof createUserSchema>
 
 export function CreateUserForm() {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const formMethods = useForm<CreateUserSchema>({
@@ -142,7 +140,7 @@ export function CreateUserForm() {
         </p>
         </div>
 
-        <div className="flex items-center justify-start gap-8">
+        <div className="flex items-center justify-start gap-8 pt-10">
           <Button
             disabled={formState.isSubmitting}
             variant="primary"
