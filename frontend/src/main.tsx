@@ -4,9 +4,9 @@ import { Home } from './pages/home'
 import './index.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import { CreateUserForm } from './pages/createUserForm'
 import { NotFoundPage } from './pages/NotFoundPage'
-import { EditUserForm } from './pages/editUserForm'
+import { EditUser } from './pages/editUser'
+import { CreateUser } from './pages/createUser'
 
 const queryCliente = new QueryClient();
 
@@ -17,10 +17,12 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />
   }, {
     path: "/edit/users/:userId",
-    element: <EditUserForm />
+    element: <EditUser />,
+    errorElement: <NotFoundPage />
   }, {
     path: "/create/users",
-    element: <CreateUserForm tag={"Criar"} />
+    element: <CreateUser />,
+    errorElement: <NotFoundPage />
   }
 ]);
 

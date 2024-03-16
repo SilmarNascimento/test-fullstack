@@ -1,29 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { FormProvider, useForm } from 'react-hook-form'
-import { string, z } from "zod"
-import { Button } from "../components/ui/button"
-import { Select } from "../components/ui/selectForm"
+import { z } from "zod"
+import { Button } from "../ui/button"
+import { Select } from "../ui/selectForm"
 import { Check, Loader2 } from "lucide-react"
 import { useNavigate, useParams } from "react-router-dom"
-
-const formUserSchema = z.object({
-  name: z.string(),
-  email: z.string().email({ message: "endereço de email inválido" }),
-  cpf: z.string(),
-  telephone: z.string().length(11),
-  status: z.enum(["Ativo", "Inativo", "Aguardando ativação", "Desativado"])
-});
-
-const editUserSchema = z.object({
-  id: string(),
-  name: z.string(),
-  email: z.string().email({ message: "endereço de email inválido" }),
-  cpf: z.string(),
-  telephone: z.string().length(11),
-  status: z.enum(["Ativo", "Inativo", "Aguardando ativação", "Desativado"])
-});
-
+import { editUserSchema, formUserSchema } from "./editUserSchema"
 
 type EditUserSchema = z.infer<typeof editUserSchema>;
 type FormUserSchema = z.infer<typeof formUserSchema>;
@@ -93,8 +76,9 @@ export function EditUserForm() {
   })
 
   async function handleEditUser(data: FormUserSchema) {
+    const id = userId ?? "";
     await editUser.mutateAsync({
-      id: userId,
+      id,
       ...data
     });
   }

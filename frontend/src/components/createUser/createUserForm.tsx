@@ -2,18 +2,13 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { FormProvider, useForm } from 'react-hook-form'
 import { z } from "zod"
-import { Button } from "../components/ui/button"
-import { Select } from "../components/ui/selectForm"
+import { Button } from "../ui/button"
+import { Select } from "../ui/selectForm"
 import { Check, Loader2 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
+import { createUserSchema } from "./createUserSchema"
 
-const createUserSchema = z.object({
-  name: z.string(),
-  email: z.string().email({ message: "endereço de email inválido" }),
-  cpf: z.string(),
-  telephone: z.string().length(11),
-  status: z.enum(["Ativo", "Inativo", "Aguardando ativação", "Desativado"])
-})
+
 
 type CreateUserSchema = z.infer<typeof createUserSchema>
 

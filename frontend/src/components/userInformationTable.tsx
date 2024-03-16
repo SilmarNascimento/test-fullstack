@@ -7,7 +7,7 @@ interface userTableProps {
   userInformation: User[] | undefined
 }
 
-export function UserTable( { userInformation } : userTableProps) {
+export function UserInformationTable( { userInformation } : userTableProps) {
   const navigate = useNavigate();
 
   function handleCreateUser() {
