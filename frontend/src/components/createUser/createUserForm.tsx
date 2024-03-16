@@ -145,7 +145,7 @@ export function CreateUserForm() {
         <div className="flex items-center justify-end gap-2">
           <Button
             disabled={formState.isSubmitting}
-            className="bg-teal-400 text-teal-950"
+            variant="primary"
             type="submit"
           >
             {formState.isSubmitting ? <Loader2 className="size-3 animate-spin" /> : <Check className="size-3" />}

@@ -7,19 +7,21 @@ import { Select } from "../ui/selectForm"
 import { Check, Loader2 } from "lucide-react"
 import { useNavigate, useParams } from "react-router-dom"
 import { editUserSchema, formUserSchema } from "./editUserSchema"
+import { useEffect, useState } from "react"
 
 type EditUserSchema = z.infer<typeof editUserSchema>;
 type FormUserSchema = z.infer<typeof formUserSchema>;
 
 export function EditUserForm() {
   const queryClient = useQueryClient();
+  const [hasChanged, setHaChanged] = useState(false);
   const { userId } = useParams<{ userId: string }>() ?? "";
   const navigate = useNavigate();
 
   const formMethods = useForm<FormUserSchema>({
     resolver: zodResolver(formUserSchema),
   })
-  const { register, handleSubmit, formState } = formMethods;
+  const { register, handleSubmit, formState, watch } = formMethods;
 
   const { data: userFoundResponse } = useQuery<EditUserSchema>({
     queryKey: ['get-users', userId],
@@ -81,15 +83,35 @@ export function EditUserForm() {
       id,
       ...data
     });
+    navigate("/");
   }
 
   function handleGoBack() {
-    navigate("/")
+    navigate("/");
   }
+
+  useEffect(() => {
+    function hasChangedValues(): boolean {
+      const updatedFormValues: FormUserSchema = watch();  
+
+      if (userFoundResponse) {    
+        const keys = Object.keys(updatedFormValues) as (keyof FormUserSchema)[];
+        for (let index = 0; index < keys.length; index ++) {
+          if (updatedFormValues[keys[index]] !== userFoundResponse[keys[index]]) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
+
+    setHaChanged(hasChangedValues());
+  }, [formState, hasChanged, userFoundResponse, watch])
 
   return (
     <FormProvider {...formMethods}>
-      <form onSubmit={handleSubmit(handleEditUser)} className="w-full space-y-6">
+      <form onSubmit={handleSubmit(handleEditUser)} className="w-full space-y-3">
         <div className="space-y-2">
           <input 
             {...register('name')}
@@ -151,8 +173,8 @@ export function EditUserForm() {
 
         <div className="flex items-center justify-end gap-2">
           <Button
-            disabled={formState.isSubmitting}
-            className="bg-teal-400 text-teal-950"
+            disabled={formState.isSubmitting  || !hasChanged}
+            variant="primary"
             type="submit"
           >
             {formState.isSubmitting ? <Loader2 className="size-3 animate-spin" /> : <Check className="size-3" />}

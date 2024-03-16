@@ -9,7 +9,7 @@ const button = tv({
       default:
         'py-1.5 px-2.5 rounded-md border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-slate-100',
       primary:
-        'py-1 px-2 rounded-full bg-teal-400 text-teal-950 hover:bg-teal-500',
+        'py-1.5 px-2.5 rounded-md border border-amber-500 bg-amber-500 text-slate-100',
     },
     size: {
       default: '',
