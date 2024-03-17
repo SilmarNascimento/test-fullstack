@@ -8,6 +8,7 @@ import { Loader2 } from "lucide-react"
 import { useNavigate, useParams } from "react-router-dom"
 import { editUserSchema, formUserSchema } from "./editUserSchema"
 import { useEffect, useState } from "react"
+import { Bounce, toast } from "react-toastify"
 
 type EditUserSchema = z.infer<typeof editUserSchema>;
 type FormUserSchema = z.infer<typeof formUserSchema>;
@@ -44,45 +45,81 @@ export function EditUserForm() {
       telephone,
       status
     }: EditUserSchema) => {
-      try {
-        const response = await fetch(`http://localhost:8080/api/users/${id}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          method: 'PUT',
-          body: JSON.stringify({
-            name,
-            email,
-            cpf,
-            telephone,
-            status
-          }),
+      const response = await fetch(`http://localhost:8080/api/users/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'PUT',
+        body: JSON.stringify({
+          name,
+          email,
+          cpf,
+          telephone,
+          status
+        }),
       })
 
       if (response.status === 200) {
         queryClient.invalidateQueries({
           queryKey: ['get-users'],
-        })
+        }),
+        toast.success('Dados alterados com sucesso!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
       }
 
       if (response.status === 400) {
         const errorMessage = await response.text();
-        console.log("Error: ", errorMessage);
-      }
-      
-      } catch (error) {
-        console.error('Erro na requisição:', error);
+        toast.warn( errorMessage, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
       }
     }
   })
 
-  async function handleEditUser(data: FormUserSchema) {
+  const editUserFn = async (data: FormUserSchema) => {
     const id = userId ?? "";
-    await editUser.mutateAsync({
+    const response = await editUser.mutateAsync({
       id,
       ...data
     });
+
+    return response;
+  }
+
+  async function handleEditUser(data: FormUserSchema) {
+    toast.promise(
+      editUserFn(data),
+      {
+        pending: {
+          render(){
+            return "Editando valores..."
+          },
+          icon: false,
+        },
+        error: {
+          render(){
+            return "Falha ao atualizar dados."
+          }
+        }
+      }
+  );
     navigate("/");
   }
 

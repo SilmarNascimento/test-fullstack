@@ -7,6 +7,7 @@ import { Select } from "../ui/selectForm"
 import { Loader2 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { createUserSchema } from "./createUserSchema"
+import { Bounce, toast } from "react-toastify"
 
 type CreateUserSchema = z.infer<typeof createUserSchema>
 
@@ -27,50 +28,83 @@ export function CreateUserForm() {
       telephone,
       status
     }: CreateUserSchema) => {
-      try {
-        console.log(status);
-        
-        const response = await fetch('http://localhost:8080/api/users',
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          method: 'POST',
-          body: JSON.stringify({
-            name,
-            email,
-            cpf,
-            telephone,
-            status
-          }),
+      console.log(status);
+      
+      const response = await fetch('http://localhost:8080/api/users', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          name,
+          email,
+          cpf,
+          telephone,
+          status
+        }),
       })
 
       if (response.status === 201) {
         queryClient.invalidateQueries({
           queryKey: ['get-users'],
         });
+        toast.success('Cliente salvo com sucesso!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
         navigate("/");
       }
 
       if (response.status === 400) {
         const errorMessage = await response.text();
-        console.log("Error: ", errorMessage);
-      }
-      
-      } catch (error) {
-        console.error('Erro na requisição:', error);
+        toast.warn( errorMessage, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
       }
     }
   })
 
+  const editUserFn = async (data: CreateUserSchema) => {
+    const response = await createUser.mutateAsync(data);
+    return response;
+  }
+
   async function handleCreateUser(data: CreateUserSchema) {
-    console.log(data);
-    console.log(formState?.errors);
-    await createUser.mutateAsync(data);
+    toast.promise(
+      editUserFn(data),
+      {
+        pending: {
+          render(){
+            return "Editando valores..."
+          },
+          icon: false,
+        },
+        error: {
+          render(){
+            return "Falha ao atualizar dados."
+          }
+        }
+      }
+    );
   }
 
   function handleGoBack() {
-    navigate("/")
+    navigate("/");
   }
 
   if (formState.errors) {
