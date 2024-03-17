@@ -7,6 +7,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { EditUser } from './pages/editUser'
 import { CreateUser } from './pages/createUser'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const queryCliente = new QueryClient();
 
@@ -30,6 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <QueryClientProvider client={queryCliente}>
     <React.StrictMode>
       <RouterProvider router={router} />
+      <ToastContainer />
     </React.StrictMode>
   </QueryClientProvider>
 )
