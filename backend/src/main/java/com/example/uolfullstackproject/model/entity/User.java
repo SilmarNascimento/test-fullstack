@@ -26,7 +26,7 @@ public class User {
   @Column(unique = true)
   private String email;
 
-  @Column(unique = true, updatable = false)
+  @Column(unique = true)
   private String cpf;
 
   private String telephone;
