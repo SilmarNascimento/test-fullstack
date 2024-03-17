@@ -9,7 +9,7 @@ export function Home() {
   const [searchParams] = useSearchParams();
 
   const page = searchParams.get('page') ? Number(searchParams.get('page')) : 1;
-  const pageSize = searchParams.get('pageSize') ? Number(searchParams.get('pageSize')) : 10;
+  const pageSize = searchParams.get('pageSize') ? Number(searchParams.get('pageSize')) : 5;
 
   const { data: userPageResponse, isLoading } = useQuery<UserPageResponse>({
     queryKey: ['get-users', page, pageSize],
