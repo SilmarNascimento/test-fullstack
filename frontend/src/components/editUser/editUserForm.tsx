@@ -90,6 +90,29 @@ export function EditUserForm() {
     navigate("/");
   }
 
+  function cpfFormatter(cpf: string | undefined): string {
+    if (!cpf) {
+      return "";
+    }	
+    cpf = cpf.replace(/[^\d]+/g,'');	
+    const firstTriple = cpf.substring(0, 3);
+    const secondTriple = cpf.substring(3, 6);
+    const thirdTriple = cpf.substring(6, 9);
+    const lastDigits = cpf.substring(9, 11);
+    return `${firstTriple}.${secondTriple}.${thirdTriple}-${lastDigits}`;
+  }
+
+  function telephoneFormatter(telephone: string | undefined): string {
+    if (!telephone) {
+      return "";
+    }	
+    telephone = telephone.replace(/[^\d]+/g,'');
+    const ddd = telephone.substring(0, 2);
+    const firstPart = telephone.substring(2, 7);
+    const secondPart = telephone.substring(7, 11);
+    return `(${ddd}) ${firstPart}-${secondPart}`;
+  }
+
   useEffect(() => {
     function hasChangedValues(): boolean {
       const updatedFormValues = watch();  
@@ -142,7 +165,7 @@ export function EditUserForm() {
           <input 
             {...register('cpf')}
             id="cpf" 
-            defaultValue={userFoundResponse?.cpf}
+            defaultValue={cpfFormatter(userFoundResponse?.cpf)}
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
@@ -155,7 +178,7 @@ export function EditUserForm() {
           <input 
             {...register('telephone')}
             id="telephone" 
-            defaultValue={userFoundResponse?.telephone}
+            defaultValue={telephoneFormatter(userFoundResponse?.telephone)}
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
