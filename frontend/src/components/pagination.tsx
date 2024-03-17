@@ -61,7 +61,7 @@ export function Pagination({ items, page, pages, totalItems }: PaginationProps) 
 
   return (
     <div className="flex text-sm items-center justify-between text-zinc-100">
-      <span className='text-zinc-800'>Exibindo {items} de {totalItems} items</span>
+      <span className='text-zinc-800'>Exibindo {items} de {totalItems} clientes</span>
       <div className="flex items-center gap-8">
         { pages !== 1 && (
           <>

@@ -4,7 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { z } from "zod"
 import { Button } from "../ui/button"
 import { Select } from "../ui/selectForm"
-import { Check, Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import { createUserSchema } from "./createUserSchema"
 
@@ -147,8 +147,7 @@ export function CreateUserForm() {
             type="submit"
             className="w-32 flex flex-row justify-center gap-2 text-sm"
           >
-            {formState.isSubmitting ? <Loader2 className="size-3 animate-spin" /> : <Check className="size-4" />}
-            <span>Criar</span>
+            {formState.isSubmitting ? <Loader2 className="size-3 animate-spin" /> : <span>Criar</span>}
           </Button>
           <Button
             onClick={handleGoBack}

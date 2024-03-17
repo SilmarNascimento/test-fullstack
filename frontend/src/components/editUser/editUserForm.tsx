@@ -4,7 +4,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { z } from "zod"
 import { Button } from "../ui/button"
 import { Select } from "../ui/selectForm"
-import { Check, Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react"
 import { useNavigate, useParams } from "react-router-dom"
 import { editUserSchema, formUserSchema } from "./editUserSchema"
 import { useEffect, useState } from "react"
@@ -171,15 +171,14 @@ export function EditUserForm() {
         </p>
         </div>
 
-        <div className="flex items-center justify-start gap-8">
+        <div className="flex items-center justify-start gap-8 pt-10">
           <Button
             disabled={formState.isSubmitting  || !hasChanged}
             variant="primary"
             type="submit"
             className="w-32 flex flex-row justify-center gap-3 text-sm"
           >
-            {formState.isSubmitting ? <Loader2 className="size-3 animate-spin" /> : <Check className="size-3" />}
-            <span>Salvar</span>
+            {formState.isSubmitting ? <Loader2 className="size-3 animate-spin" /> : <span>Salvar</span>}
           </Button>
           <Button
             onClick={handleGoBack}

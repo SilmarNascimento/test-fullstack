@@ -79,7 +79,7 @@ export function UserInformationTable( { userInformation } : userTableProps) {
         </div>
         <Button
           variant="primary"
-          className="w-32 h-10 flex flex-row justify-center text-sm"
+          className="w-32 h-10 flex flex-row justify-center text-sm mr-10"
           onClick={handleCreateUser}
         >
           <span>Novo Cliente</span>
@@ -106,12 +106,12 @@ export function UserInformationTable( { userInformation } : userTableProps) {
                       {telephoneFormatter(user.telephone)}
                     </span>
                 </TableCell>
-                <TableCell className="text-zinc-300 flex-1 flex justify-center items-center">
+                <TableCell className="text-zinc-300 flex-1 flex justify-start items-center ml-8 max-w-84">
                     <span className="font-normal text-gray-600 text-base">
                       {statusFormatter(user.status)}
                     </span>
                 </TableCell>
-                <TableCell className="flex flex-1 justify-center items-center">
+                <TableCell className="flex flex-1 justify-center items-center max-w-84">
                   <Button
                     size="icon"
                     className="w-32 h-10 flex flex-row justify-center text-sm"
