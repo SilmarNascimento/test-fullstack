@@ -28,7 +28,7 @@ export interface SelectTriggerProps
 export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
   ({ className, ...props }, ref) => {
   const [searchParams] = useSearchParams();
-  const pageSize = searchParams.get('pageSize') ?? "10";
+  const pageSize = searchParams.get('pageSize') ?? "5";
   
   return (
     <SelectPrimitive.Trigger

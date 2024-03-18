@@ -38,8 +38,8 @@ export function CreateUserForm() {
         body: JSON.stringify({
           name,
           email,
-          cpf,
-          telephone,
+          cpf: cpf.replace(/[^\d]+/g,''),
+          telephone: telephone.replace(/[^\d]+/g,''),
           status
         }),
       })
@@ -88,28 +88,14 @@ export function CreateUserForm() {
     toast.promise(
       editUserFn(data),
       {
-        pending: {
-          render(){
-            return "Editando valores..."
-          },
-          icon: false,
-        },
-        error: {
-          render(){
-            return "Falha ao atualizar dados."
-          }
-        }
+        pending: 'Promise is pending',
+        error:  "Falha ao atualizar dados."
       }
     );
   }
 
   function handleGoBack() {
     navigate("/");
-  }
-
-  if (formState.errors) {
-    console.log(formState.errors);
-    
   }
 
   return (

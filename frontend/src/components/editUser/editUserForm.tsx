@@ -9,20 +9,21 @@ import { useNavigate, useParams } from "react-router-dom"
 import { editUserSchema, formUserSchema } from "./editUserSchema"
 import { useEffect, useState } from "react"
 import { Bounce, toast } from "react-toastify"
+import { cpfFormatter, telephoneFormatter } from "../../util/formatters"
 
 type EditUserSchema = z.infer<typeof editUserSchema>;
 type FormUserSchema = z.infer<typeof formUserSchema>;
 
 export function EditUserForm() {
   const queryClient = useQueryClient();
-  const [hasChanged, setHaChanged] = useState(false);
+  const [hasChanged, setHasChanged] = useState(false);
   const { userId } = useParams<{ userId: string }>() ?? "";
   const navigate = useNavigate();
 
   const formMethods = useForm<FormUserSchema>({
     resolver: zodResolver(formUserSchema),
   })
-  const { register, handleSubmit, formState, watch } = formMethods;
+  const { register, handleSubmit, formState, setValue, watch } = formMethods;
 
   const { data: userFoundResponse } = useQuery<EditUserSchema>({
     queryKey: ['get-users', userId],
@@ -53,8 +54,8 @@ export function EditUserForm() {
         body: JSON.stringify({
           name,
           email,
-          cpf,
-          telephone,
+          cpf: cpf.replace(/[^\d]+/g,''),
+          telephone: telephone.replace(/[^\d]+/g,''),
           status
         }),
       })
@@ -107,17 +108,8 @@ export function EditUserForm() {
     toast.promise(
       editUserFn(data),
       {
-        pending: {
-          render(){
-            return "Editando valores..."
-          },
-          icon: false,
-        },
-        error: {
-          render(){
-            return "Falha ao atualizar dados."
-          }
-        }
+        pending: 'Atualizando informações...',
+        error: "Falha ao atualizar dados."
       }
   );
     navigate("/");
@@ -127,37 +119,31 @@ export function EditUserForm() {
     navigate("/");
   }
 
-  function cpfFormatter(cpf: string | undefined): string {
-    if (!cpf) {
-      return "";
-    }	
-    cpf = cpf.replace(/[^\d]+/g,'');	
-    const firstTriple = cpf.substring(0, 3);
-    const secondTriple = cpf.substring(3, 6);
-    const thirdTriple = cpf.substring(6, 9);
-    const lastDigits = cpf.substring(9, 11);
-    return `${firstTriple}.${secondTriple}.${thirdTriple}-${lastDigits}`;
-  }
-
-  function telephoneFormatter(telephone: string | undefined): string {
-    if (!telephone) {
-      return "";
-    }	
-    telephone = telephone.replace(/[^\d]+/g,'');
-    const ddd = telephone.substring(0, 2);
-    const firstPart = telephone.substring(2, 7);
-    const secondPart = telephone.substring(7, 11);
-    return `(${ddd}) ${firstPart}-${secondPart}`;
-  }
+  useEffect(() => {
+    if (userFoundResponse) {
+      setValue('name', userFoundResponse.name);
+      setValue('email', userFoundResponse.email);
+      setValue('cpf', cpfFormatter(userFoundResponse.cpf));
+      setValue('telephone', telephoneFormatter(userFoundResponse.telephone));
+      setValue('status', userFoundResponse.status);
+    }
+  }, [userFoundResponse, setValue]);
 
   useEffect(() => {
     function hasChangedValues(): boolean {
       const updatedFormValues = watch();  
 
+      updatedFormValues.cpf = updatedFormValues.cpf.replace(/[^\d]+/g,'');
+      updatedFormValues.telephone = updatedFormValues.telephone.replace(/[^\d]+/g,'');
+
       if (userFoundResponse) {    
         const keys = Object.keys(updatedFormValues) as (keyof FormUserSchema)[];
         for (let index = 0; index < keys.length; index ++) {
-          if (updatedFormValues[keys[index]] !== userFoundResponse[keys[index]]) {
+          const inputName = keys[index];
+          const updatedValue = updatedFormValues[inputName];
+          const originalValue = userFoundResponse[inputName];
+
+          if (updatedValue === undefined || originalValue === undefined || updatedValue !== originalValue) {
             return true;
           }
         }
@@ -166,7 +152,7 @@ export function EditUserForm() {
       return false;
     }
 
-    setHaChanged(hasChangedValues());
+    setHasChanged(hasChangedValues());
   }, [formState, hasChanged, userFoundResponse, watch])
 
   return (
@@ -175,8 +161,9 @@ export function EditUserForm() {
         <div className="space-y-2">
           <input 
             {...register('name')}
-            id="name" 
-            defaultValue={userFoundResponse?.name}
+            id="name"
+            name="name"
+            placeholder="Nome"
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
@@ -188,8 +175,9 @@ export function EditUserForm() {
         <div className="space-y-2">
           <input 
             {...register('email')}
-            id="email" 
-            defaultValue={userFoundResponse?.email}
+            id="email"
+            name="email"
+            placeholder="E-mail"
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
@@ -201,8 +189,9 @@ export function EditUserForm() {
         <div className="space-y-2">
           <input 
             {...register('cpf')}
-            id="cpf" 
-            defaultValue={cpfFormatter(userFoundResponse?.cpf)}
+            id="cpf"
+            name="cpf"
+            placeholder="CPF"
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />
@@ -214,8 +203,9 @@ export function EditUserForm() {
         <div className="space-y-2">
           <input 
             {...register('telephone')}
-            id="telephone" 
-            defaultValue={telephoneFormatter(userFoundResponse?.telephone)}
+            id="telephone"
+            name="telephone"
+            placeholder="Telefone"
             type="text" 
             className="border border-zinc-800 rounded-lg px-3 py-2.5 bg-zinc-50/50 w-72 text-sm"
           />

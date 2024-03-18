@@ -63,7 +63,7 @@ export function Pagination({ items, page, pages, totalItems }: PaginationProps) 
     <div className="flex text-sm items-center justify-between text-zinc-100">
       {
         items === 1
-        ? <span className='text-zinc-800'>Exibindo {items} de {totalItems} cliente</span>
+        ? <span className='text-zinc-800'>Exibindo {totalItems} cliente</span>
         : <span className='text-zinc-800'>Exibindo {items} de {totalItems} clientes</span>
       }
       <div className="flex items-center gap-8">
