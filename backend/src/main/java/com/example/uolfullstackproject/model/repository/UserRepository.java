@@ -16,4 +16,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
   Page<User> findAll(@NonNull Pageable pageable);
 
   Optional<User> findByCpf(String cpf);
+
+  Optional<User> findByEmail(String email);
 }

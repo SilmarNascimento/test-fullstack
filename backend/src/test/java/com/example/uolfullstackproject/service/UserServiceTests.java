@@ -169,10 +169,24 @@ public class UserServiceTests {
   }
 
   @Test
-  @DisplayName("Verifica se é disparado uma exceção ao tentar criar uma a entidade User já existente")
-  public void createSubjectTestError() {
+  @DisplayName("Verifica se é disparado uma exceção ao tentar criar uma a entidade User já existente pelo cpf")
+  public void createSubjectTestCPFError() {
     Mockito
         .when(userRepository.findByCpf(mockUser01.getCpf()))
+        .thenReturn(Optional.of(mockUser01));
+
+    assertThrows(AlreadyExistsException.class, () -> userService.createUser(mockUser01));
+
+    Mockito
+        .verify(userRepository)
+        .findByCpf(any(String.class));
+  }
+
+  @Test
+  @DisplayName("Verifica se é disparado uma exceção ao tentar criar uma a entidade User já existente pelo email")
+  public void createSubjectTestEmailError() {
+    Mockito
+        .when(userRepository.findByEmail(mockUser01.getEmail()))
         .thenReturn(Optional.of(mockUser01));
 
     assertThrows(AlreadyExistsException.class, () -> userService.createUser(mockUser01));

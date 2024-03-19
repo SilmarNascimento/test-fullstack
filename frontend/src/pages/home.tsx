@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { UserPageResponse } from "../types/userPageResponse";
 import { Pagination } from "../components/pagination";
 import { UserInformationTable } from "../components/userInformationTable/userInformationTable";
+import { TopHeader } from "../components/topHeader";
 
 export function Home() {
   const [searchParams] = useSearchParams();
@@ -28,10 +29,13 @@ export function Home() {
   }
 
   return (
-    <div className="m-auto max-w-[80%] min-w-96 py-[5%] flex flex-col">
-      <Header />
-      <UserInformationTable userInformation={userPageResponse?.data}/>
-      {userPageResponse && <Pagination pages={userPageResponse.pages} items={userPageResponse.pageItems} page={page} totalItems={userPageResponse.totalItems}/>}
-    </div>
+    <>
+      <TopHeader />
+      <div className="m-auto max-w-[80%] min-w-96 pt-[3%] pb-[2%] flex flex-col">
+        <Header />
+        <UserInformationTable userInformation={userPageResponse?.data}/>
+        {userPageResponse && <Pagination pages={userPageResponse.pages} items={userPageResponse.pageItems} page={page} totalItems={userPageResponse.totalItems}/>}
+      </div>
+    </>
   )
 }

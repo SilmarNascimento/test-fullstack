@@ -302,6 +302,35 @@ public class UserControllerTests {
   }
 
   @Test
+  @DisplayName("Verifica se é disparado uma exceção quando se tenta cadastrar uma entidade User com email já existente")
+  public void createUserTestEmailAlreadyExistsError() throws Exception {
+    Mockito
+        .when(userService.createUser(any(User.class)))
+        .thenThrow(new AlreadyExistsException("Email já cadastrado!"));
+
+    UserInputDto userInputDto = new UserInputDto(
+        "Cainã Jucá",
+        "caina.juca@gmail.com",
+        "26252833756",
+        "27997777008",
+        "ATIVO"
+    );
+
+    ResultActions httpResponse = mockMvc
+        .perform(post(baseUrl)
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(userInputDto)));
+
+    httpResponse
+        .andExpect(status().is(400))
+        .andExpect(jsonPath("$").value("Email já cadastrado!"));
+
+    Mockito
+        .verify(userService, Mockito.times(1))
+        .createUser(any(User.class));
+  }
+
+  @Test
   @DisplayName("Verifica se uma entidade User é atualizada")
   public void updateUserByIdTest() throws Exception {
     Mockito

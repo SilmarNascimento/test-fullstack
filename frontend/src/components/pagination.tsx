@@ -62,12 +62,12 @@ export function Pagination({ items, page, pages, totalItems }: PaginationProps) 
   return (
     <div className="flex text-sm items-center justify-between text-zinc-100">
       {
-        items === 1
+        items <= 1
         ? <span className='text-zinc-800'>Exibindo {totalItems} cliente</span>
         : <span className='text-zinc-800'>Exibindo {items} de {totalItems} clientes</span>
       }
       <div className="flex items-center gap-8">
-        { pages !== 1 && (
+        { pages >= 2 && (
           <>
             <span className='text-zinc-800'>Página {page} de {pages}</span>
             <div className="space-x-1.5">
@@ -112,7 +112,7 @@ export function Pagination({ items, page, pages, totalItems }: PaginationProps) 
         )}
 
         <div className="flex items-center gap-2">
-          <span className='text-zinc-800'>Linhas por página</span>
+          <span className='text-zinc-800'>Clientes por página</span>
           <Select>
             <SelectTrigger aria-label="Page" className='bg-amber-500'/>
             <SelectContent>

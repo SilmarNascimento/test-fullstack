@@ -38,6 +38,10 @@ public class UserService implements UserServiceInterface {
         .ifPresent(subjectFound -> {
           throw new AlreadyExistsException("Usuário já cadastrado!");
         });
+    userRepository.findByEmail(user.getEmail())
+        .ifPresent(subjectFound -> {
+          throw new AlreadyExistsException("Email já cadastrado!");
+        });
     return userRepository.save(user);
   }
 
