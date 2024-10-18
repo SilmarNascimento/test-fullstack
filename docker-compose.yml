@@ -24,6 +24,8 @@ services:
     depends_on:
       - db
     environment:
+      - FRONTEND_DOMAIN=
+      - FRONTEND_PORT=
       - DATABASE_URL=jdbc:postgresql://db:5432/db
       - DATABASE_USERNAME=uolProject
       - DATABASE_PASSWORD=1234
