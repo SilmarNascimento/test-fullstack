@@ -15,6 +15,9 @@ type EditUserSchema = z.infer<typeof editUserSchema>;
 type FormUserSchema = z.infer<typeof formUserSchema>;
 
 export function EditUserForm() {
+  const backendDomain: string = import.meta.env.VITE_BACKEND_DOMAIN || 'localhost';
+  const backendPort: string = import.meta.env.VITE_BACKEND_PORT || '8080';
+
   const queryClient = useQueryClient();
   const [hasChanged, setHasChanged] = useState(false);
   const { userId } = useParams<{ userId: string }>() ?? "";
@@ -28,7 +31,7 @@ export function EditUserForm() {
   const { data: userFoundResponse } = useQuery<EditUserSchema>({
     queryKey: ['get-users', userId],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:8080/api/users/${userId}`)
+      const response = await fetch(`http://${backendDomain}:${backendPort}/api/users/${userId}`)
       const data = await response.json()
 
       return data
@@ -46,7 +49,7 @@ export function EditUserForm() {
       telephone,
       status
     }: EditUserSchema) => {
-      const response = await fetch(`http://localhost:8080/api/users/${id}`, {
+      const response = await fetch(`http://${backendDomain}:${backendPort}/api/users/${id}`, {
         headers: {
           'Content-Type': 'application/json',
         },

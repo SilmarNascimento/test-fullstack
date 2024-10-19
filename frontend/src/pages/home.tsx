@@ -7,6 +7,9 @@ import { UserInformationTable } from "../components/userInformationTable/userInf
 import { TopHeader } from "../components/topHeader";
 
 export function Home() {
+  const backendDomain: string = import.meta.env.VITE_BACKEND_DOMAIN || 'localhost';
+  const backendPort: string = import.meta.env.VITE_BACKEND_PORT || '8080';
+
   const [searchParams] = useSearchParams();
 
   const page = searchParams.get('page') ? Number(searchParams.get('page')) : 1;
@@ -15,7 +18,7 @@ export function Home() {
   const { data: userPageResponse, isLoading } = useQuery<UserPageResponse>({
     queryKey: ['get-users', page, pageSize],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:8080/api/users?pageNumber=${page - 1}&pageSize=${pageSize}`)
+      const response = await fetch(`http://${backendDomain}:${backendPort}/api/users?pageNumber=${page - 1}&pageSize=${pageSize}`)
       const data = await response.json()
 
       return data

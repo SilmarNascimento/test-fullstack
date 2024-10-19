@@ -12,6 +12,9 @@ import { Bounce, toast } from "react-toastify"
 type CreateUserSchema = z.infer<typeof createUserSchema>
 
 export function CreateUserForm() {
+  const backendDomain: string = import.meta.env.VITE_BACKEND_DOMAIN || 'localhost';
+  const backendPort: string = import.meta.env.VITE_BACKEND_PORT || '8080';
+
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -30,7 +33,7 @@ export function CreateUserForm() {
     }: CreateUserSchema) => {
       console.log(status);
       
-      const response = await fetch('http://localhost:8080/api/users', {
+      const response = await fetch(`http://${backendDomain}:${backendPort}/api/users`, {
         headers: {
           'Content-Type': 'application/json',
         },
