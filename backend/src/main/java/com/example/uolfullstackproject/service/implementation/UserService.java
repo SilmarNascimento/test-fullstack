@@ -52,6 +52,7 @@ public class UserService implements UserServiceInterface {
 
     userFound.setStatus(user.getStatus());
     userFound.setName(user.getName());
+    userFound.setCpf(user.getCpf());
     userFound.setEmail(user.getEmail());
     userFound.setTelephone(user.getTelephone());
 
@@ -60,8 +61,8 @@ public class UserService implements UserServiceInterface {
 
   @Override
   public void deleteUser(UUID userId) {
-     userRepository.findById(userId)
+    userRepository.findById(userId)
         .orElseThrow(() -> new NotFoundException("Usuário não encontrado!"));
-     userRepository.deleteById(userId);
+    userRepository.deleteById(userId);
   }
 }

@@ -33,7 +33,6 @@ export function Home() {
 
   return (
     <>
-      <TopHeader />
       <div className="m-auto max-w-[80%] min-w-96 pt-[3%] pb-[2%] flex flex-col">
         <Header />
         <UserInformationTable userInformation={userPageResponse?.data}/>

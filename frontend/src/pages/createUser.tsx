@@ -5,7 +5,6 @@ import { TopHeader } from "../components/topHeader";
 export function CreateUser() {
   return (
     <>
-      <TopHeader />
       <div className="max-w-[80%] min-w-96 m-auto pt-[3%] pb-[2%]">
         <Header />
         <div className="flex flex-col my-8">

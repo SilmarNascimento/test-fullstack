@@ -214,7 +214,7 @@ public class UserServiceTests {
     assertEquals(mockUserId01, serviceResponse.getId());
     assertEquals(mockUser02.getName(), serviceResponse.getName());
     assertEquals(mockUser02.getEmail(), serviceResponse.getEmail());
-    assertNotEquals(mockUser02.getCpf(), serviceResponse.getCpf());
+    assertEquals(mockUser02.getCpf(), serviceResponse.getCpf());
     assertEquals(mockUser01.getCpf(), serviceResponse.getCpf());
     assertEquals(mockUser02.getTelephone(), serviceResponse.getTelephone());
     assertEquals(mockUser02.getStatus(), serviceResponse.getStatus());

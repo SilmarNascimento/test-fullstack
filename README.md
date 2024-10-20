@@ -33,8 +33,8 @@ Este projeto é uma aplicação fullstack monolítica que permite aos usuários 
 
 <h3>Layout Web</h3>
   <p align="center">
-    <img src="../.github/example.png" alt="Tela de listagem" width="400px">
-    <img src="../.github/example.png" alt="Tela de cadastro" width="400px">
+    <img src="./assets/cadastro-cliente-home.png" alt="Tela de listagem" width="400px">
+    <img src="./assets/cadastro-cliente-create-user.png" alt="Tela de cadastro" width="400px">
   </p>
 
 <h3>Modelo Conceitual</h3>
@@ -135,9 +135,9 @@ Here you can list the main routes of your API, and what are their expected reque
 ​
 | route               | description                                          
 |----------------------|-----------------------------------------------------
-| <kbd>/authenticate</kbd>     | page that list all user info
-| <kbd>/login</kbd>     | page to login
-| <kbd>/dashboard</kbd>     | page that contains all user shopping and spences info
+| <kbd>/</kbd>     | página para listar todos os usuários cadastrados
+| <kbd>/create/users</kbd>     | página para cadastrar um novo usuário
+| <kbd>/edit/users/:userId</kbd>     | página para editar um usuário já cadastrado
 
 <h2 id="author">📝 Autor</h2>
 
