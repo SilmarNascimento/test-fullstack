@@ -37,11 +37,6 @@ Este projeto é uma aplicação fullstack monolítica que permite aos usuários 
     <img src="./assets/cadastro-cliente-create-user.png" alt="Tela de cadastro" width="400px">
   </p>
 
-<h3>Modelo Conceitual</h3>
-  <p align="center">
-    <img src="../.github/example.png" alt="Image Example" width="400px">
-  </p>
-
 <h2 id="tech">🖥️ Tecnologias Utilizadas</h2>
   <h3>Front-end</h3>
 
