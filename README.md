@@ -83,7 +83,9 @@ git clone git@github.com:SilmarNascimento/test-fullstack-gerenciamento-de-client
 
 <h3>Executar o Projeto Localmente</h3>
 
-Após clonar o repositório, instale as dependências do backend java executando os seguintes comandos:
+Antes de iniciar o backend, é necessário subir o banco de dados PostgreSQL localmente. Se você já tem o PostgreSQL instalado, inicie o serviço e crie o banco de dados necessário para o projeto. Se preferir, pode usar o Docker para subir o banco rapidamente. Certifique-se de que o banco está rodando na porta `5432` e guarde as credenciais para configurar o backend.
+
+Após iniciar o serviço de banco de dados, instale as dependências do backend java executando os seguintes comandos:
 
 ```bash
 # entrar na pasta do backend
@@ -118,6 +120,27 @@ mvn spring-boot:run
 ```
 
 Esse comando irá iniciar o servidor da aplicação backend. Por padrão, ele estará disponível em http://localhost:8080
+
+Agora que o backend está rodando, você pode subir o frontend da aplicação. Siga os passos abaixo:
+
+```bash
+# Entrar na pasta do frontend
+cd test-fullstack-gerenciamento-de-cliente/frontend
+
+# Instalar as dependências do frontend
+npm install
+```
+
+Para iniciar o frontend da aplicação siga o seguinte comando:
+
+```bash
+# Subir a aplicação frontend
+npm run dev
+```
+
+O frontend estará disponível em http://localhost:3000 e se comunicará com o backend que está rodando em http://localhost:8080.
+
+Com esses passos, o projeto estará rodando localmente com o banco de dados, backend e frontend funcionando.
 
 <h3>Executar o Projeto com Docker</h3>
 
