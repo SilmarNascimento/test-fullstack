@@ -7,7 +7,7 @@
 [POSTGRES__BADGE]: https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white
 [Docker__BADGE]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
 
-<h1 align="center" style="font-weight: bold;">Cadastro de CLientes 💻</h1>
+<h1 align="center" style="font-weight: bold;">Cadastro de Clientes 💻</h1>
 
 <h1 align="center">
 
@@ -141,15 +141,6 @@ Here you can list the main routes of your API, and what are their expected reque
 
 <h2 id="author">📝 Autor</h2>
 
-Here you will explain how other developers can contribute to your project. For example, explaining how can create their branches, which patterns to follow and how to open an pull request
+Silmar Fernando do Nascimento
 
-1. `git clone https://github.com/Fernanda-Kipper/text-editor.git`
-2. `git checkout -b feature/NAME`
-3. Follow commit patterns
-4. Open a Pull Request explaining the problem solved or feature made, if exists, append screenshot of visual modifications and wait for the review!
-
-<h3>Documentations that might help</h3>
-
-[📝 How to create a Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
-
-[💾 Commit pattern](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
+[Linkedin](https://www.linkedin.com/in/silmarnascimento/)
