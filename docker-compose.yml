@@ -7,9 +7,8 @@ services:
     ports:
       - 3000:3000
     working_dir: /app-frontend
-    environment:
-      - VITE_BACKEND_DOMAIN=localhost
-      - VITE_BACKEND_PORT=8080
+    env_file:
+      - ./.env
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3030"]
       timeout: 10s
@@ -26,9 +25,9 @@ services:
       - ./backend/src:/app-backend/src
     depends_on:
       - db
+    env_file:
+      - ./.env
     environment:
-      - FRONTEND_DOMAIN=localhost
-      - FRONTEND_PORT=3000
       - DATABASE_URL=jdbc:postgresql://db:5432/db
       - DATABASE_USERNAME=uolProject
       - DATABASE_PASSWORD=1234

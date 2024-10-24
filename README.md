@@ -7,7 +7,7 @@
 [POSTGRES__BADGE]: https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white
 [Docker__BADGE]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
 
-<h1 align="center" style="font-weight: bold;">Cadastro de Clientes 💻</h1>
+<h1 align="center" style="font-weight: bold;" id="top">Cadastro de Clientes 💻</h1>
 
 <h1 align="center">
 
@@ -27,9 +27,12 @@
   <a href="#author">Autor</a>
 </p>
 
-<h2 id="about">📌 Sobre o Projeto</h2>
+<div>
+  <a href="#top" style="float: right;">Top</a>
+  <h2 id="about">📌 Sobre o Projeto </h2>
+</div>
 
-Este projeto é uma aplicação fullstack monolítica que permite aos usuários visualizar e gerenciar clientes. O frontend oferece uma interface intuitiva e se comunica com o backend via API. O backend gerencia e armazena os dados válidos dos clientes, garantindo uma experiência completa de gerenciamento.
+Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo que usuários visualizem, cadastrem e atualizem clientes. O frontend oferece uma interface intuitiva e se comunica com o backend via API. O backend gerencia e armazena os dados válidos dos clientes, garantindo uma experiência completa de gerenciamento. O deploy foi feito na AWS utilizando uma instância EC2 (free tier), com configuração de User Data para instalação automática de programas como Docker. Variáveis de ambiente foram usadas para configurar o CORS e o endpoint de requisições no frontend, gerenciadas via docker-compose. Um Security Group foi configurado para permitir a comunicação entre frontend e backend, além do acesso externo à aplicação. O armazenamento foi gerenciado com EBS para a persistência de dados da instância.
 
 <h3>Layout Web</h3>
   <p align="center">
@@ -37,7 +40,12 @@ Este projeto é uma aplicação fullstack monolítica que permite aos usuários 
     <img src="./assets/cadastro-cliente-create-user.png" alt="Tela de cadastro" width="400px">
   </p>
 
-<h2 id="tech">🖥️ Tecnologias Utilizadas</h2>
+
+<div>
+  <a href="#top" style="float: right;">Top</a>
+  <h2 id="tech">🖥️ Tecnologias Utilizadas</h2>
+</div>
+
   <h3>Front-end</h3>
 
   - [React](https://github.com/facebook/react)
@@ -54,7 +62,15 @@ Este projeto é uma aplicação fullstack monolítica que permite aos usuários 
 
   - [Postgres](https://github.com/postgres/postgres)
 
-<h2 id="started">🚀 Como Executar</h2>
+  <h3>Deploy</h3>
+
+  - [AWS](https://aws.amazon.com/)
+
+
+<div>
+  <a href="#top" style="float: right;">Top</a>
+  <h2 id="started">🚀 Como Executar</h2>
+</div>
 
 <h3>Pre-requisitos</h3>
 
@@ -120,7 +136,7 @@ Agora que o backend está rodando, você pode subir o frontend da aplicação. S
 
 ```bash
 # Entrar na pasta do frontend
-cd test-fullstack-gerenciamento-de-cliente/frontend
+cd ../../../../frontend
 
 # Instalar as dependências do frontend
 npm install
@@ -139,7 +155,19 @@ Com esses passos, o projeto estará rodando localmente com o banco de dados, bac
 
 <h3>Executar o Projeto com Docker</h3>
 
-Caso queira executar o projeto usando docker, após clonar o projeto, abra o arquivo docker-compose.yaml na raiz do projeto e edite as variáveis de ambiente no serviço de backend para a conexão com o banco de dados. Após a configuração das variáveis de ambiente, abra o terminal e execute as instruções abaixo:
+Caso queira executar o projeto usando docker, após clonar o projeto, abra o arquivo docker-compose.yaml na raiz do projeto e edite as variáveis de ambiente no serviço de backend para a conexão com o banco de dados. Para a configuração dos endpoints para a requisição do frontend e configuração do CORS da aplicação, renomeie o arquivo `.env.exemple` para `.env` e altere as variáveis abaixo se necessário:
+
+```bash
+# Frontend environment variables
+VITE_BACKEND_DOMAIN=localhost
+VITE_BACKEND_PORT=8080
+
+# Backend environment variables
+FRONTEND_DOMAIN=localhost
+FRONTEND_PORT=3000
+```
+
+Após a configuração das variáveis de ambiente, abra o terminal e execute as instruções abaixo:
 
 ```bash
 # entrar na pasta raiz do projeto e executar o comando docker
@@ -147,7 +175,13 @@ cd test-fullstack-gerenciamento-de-cliente
 docker-compose up -d
 ```
 
-<h2 id="routes">📍 Rotas da Aplicação</h2>
+O frontend estará disponível em http://localhost:3000 e se comunicará com o backend que está rodando em http://localhost:8080.
+
+
+<div>
+  <a href="#top" style="float: right;">Top</a>
+  <h2 id="routes">📍 Rotas da Aplicação</h2>
+</div>
 
 Here you can list the main routes of your API, and what are their expected request bodies.
 ​
@@ -157,7 +191,11 @@ Here you can list the main routes of your API, and what are their expected reque
 | <kbd>/create/users</kbd>     | página para cadastrar um novo usuário
 | <kbd>/edit/users/:userId</kbd>     | página para editar um usuário já cadastrado
 
-<h2 id="author">📝 Autor</h2>
+
+<div>
+  <a href="#top" style="float: right;">Top</a>
+  <h2 id="author">📝 Autor</h2>
+</div>
 
 Silmar Fernando do Nascimento
 

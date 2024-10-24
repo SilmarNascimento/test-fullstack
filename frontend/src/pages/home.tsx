@@ -4,7 +4,6 @@ import { useSearchParams } from "react-router-dom";
 import { UserPageResponse } from "../types/userPageResponse";
 import { Pagination } from "../components/pagination";
 import { UserInformationTable } from "../components/userInformationTable/userInformationTable";
-import { TopHeader } from "../components/topHeader";
 
 export function Home() {
   const backendDomain: string = import.meta.env.VITE_BACKEND_DOMAIN || 'localhost';
