@@ -15,12 +15,7 @@ As rotas da aplicação podem ser visualizadas segundo a tabela abaixo.
 
 ## Detalhamento dos endpoints
 
-<div>
-  <h3 id="routes">GET /api/users</h3></h3>
-  <a href="#top">Top</a>
-</div>
-
-<br>
+<h3 id="routes">GET /api/users</h3>
 
 Retorna uma lista paginada de todos os usuários cadastrados.
 
@@ -67,14 +62,11 @@ Content-Type: application/json
 }
 ```
 
-<br>
-
-<div>
-  <h3 id="routes">POST /api/users</h3></h3>
-  <a href="#top">Top</a>
-</div>
+[Voltar ao Início](#top)
 
 <br>
+
+<h3 id="routes">POST /api/users</h3></h3>
 
 Cria um novo usuário.
 
@@ -137,14 +129,11 @@ Content-Type: application/json
 "Email já cadastrado!"
 ```
 
-<br>
-
-<div>
-  <h3 id="routes">PUT /api/users/{userId}</h3></h3>
-  <a href="#top">Top</a>
-</div>
+[Voltar ao Início](#top)
 
 <br>
+
+<h3 id="routes">PUT /api/users/{userId}</h3></h3>
 
 Atualiza as informações de um usuário existente pelo ID.
 
@@ -199,14 +188,11 @@ Content-Type: application/json
 "Usuário não encontrado!"
 ```
 
-<br>
-
-<div>
-  <h3 id="routes">DELETE /api/users/{userId}</h3></h3>
-  <a href="#top">Top</a>
-</div>
+[Voltar ao Início](#top)
 
 <br>
+
+<h3 id="routes">DELETE /api/users/{userId}</h3></h3>
 
 Deleta um usuário pelo ID.
 
@@ -238,3 +224,7 @@ Content-Type: application/json
 
 "Usuário não encontrado!"
 ```
+
+[Voltar ao Início](#top)
+
+<br>

@@ -23,12 +23,7 @@
   <a href="#author">Autor</a>
 </p>
 
-<div>
-  <h2 id="about">📌 Sobre o Projeto</h2>
-  <a href="#top">Top</a>
-</div>
-
-<br>
+<h2 id="about">📌 Sobre o Projeto</h2>
 
 Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo que usuários visualizem, cadastrem e atualizem clientes. O frontend oferece uma interface intuitiva e se comunica com o backend via API. O backend gerencia e armazena os dados válidos dos clientes, garantindo uma experiência completa de gerenciamento. O deploy foi feito na AWS utilizando uma instância EC2 (free tier), com configuração de User Data para instalação automática de programas como Docker. Variáveis de ambiente foram usadas para configurar o CORS e o endpoint de requisições no frontend, gerenciadas via docker-compose. Um Security Group foi configurado para permitir a comunicação entre frontend e backend, além do acesso externo à aplicação. O armazenamento foi gerenciado com EBS para a persistência de dados da instância.
 
@@ -39,10 +34,10 @@ Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo q
     <img src="./assets/cadastro-cliente-create-user.png" alt="Tela de cadastro" width="400px">
   </p>
 
-<div>
-  <h2 id="tech">🖥️ Tecnologias Utilizadas</h2>
-  <a href="#top">Top</a>
-</div>
+[Voltar ao Início](#top)
+<br>
+
+<h2 id="tech">🖥️ Tecnologias Utilizadas</h2>
 
 ### Front-end
 
@@ -64,10 +59,10 @@ Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo q
 
 - [AWS](https://aws.amazon.com/)
 
-<div>
-  <h2 id="started">🚀 Como Executar</h2>
-  <a href="#top">Top</a>
-</div>
+[Voltar ao Início](#top)
+<br>
+
+<h2 id="started">🚀 Como Executar</h2>
 
 ### Pre-requisitos
 
@@ -174,10 +169,10 @@ docker-compose up -d
 
 O frontend estará disponível em <http://localhost:3000> e se comunicará com o backend que está rodando em <http://localhost:8080>.
 
-<div>
-  <h2 id="routes">📍 Rotas da Aplicação</h2>
-  <a href="#top">Top</a>
-</div>
+[Voltar ao Início](#top)
+<br>
+
+<h2 id="routes">📍 Rotas da Aplicação</h2>
 
 ### Rotas do Frontend
 
@@ -203,11 +198,14 @@ Na tabela abaixo encontra-se os endpoints da API e suas descrições:
 
 Para mais detalhes sobre as rotas da API e exemplos detalhados de requisições e respostas, [clique aqui](./backend/API_DOCUMENTATION.md)
 
-<div>
-  <h2 id="author">📝 Autor</h2>
-  <a href="#top">Top</a>
-</div>
+[Voltar ao Início](#top)
+<br>
+
+<h2 id="author">📝 Autor</h2>
 
 Silmar Fernando do Nascimento
 
 [Linkedin](https://www.linkedin.com/in/silmarnascimento/)
+
+[Voltar ao Início](#top)
+<br>
