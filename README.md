@@ -35,6 +35,7 @@ Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo q
   </p>
 
 [Voltar ao Início](#top)
+
 <br>
 
 <h2 id="tech">🖥️ Tecnologias Utilizadas</h2>
@@ -60,6 +61,7 @@ Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo q
 - [AWS](https://aws.amazon.com/)
 
 [Voltar ao Início](#top)
+
 <br>
 
 <h2 id="started">🚀 Como Executar</h2>
@@ -170,6 +172,7 @@ docker-compose up -d
 O frontend estará disponível em <http://localhost:3000> e se comunicará com o backend que está rodando em <http://localhost:8080>.
 
 [Voltar ao Início](#top)
+
 <br>
 
 <h2 id="routes">📍 Rotas da Aplicação</h2>
@@ -199,6 +202,7 @@ Na tabela abaixo encontra-se os endpoints da API e suas descrições:
 Para mais detalhes sobre as rotas da API e exemplos detalhados de requisições e respostas, [clique aqui](./backend/API_DOCUMENTATION.md)
 
 [Voltar ao Início](#top)
+
 <br>
 
 <h2 id="author">📝 Autor</h2>
@@ -208,4 +212,5 @@ Silmar Fernando do Nascimento
 [Linkedin](https://www.linkedin.com/in/silmarnascimento/)
 
 [Voltar ao Início](#top)
+
 <br>
