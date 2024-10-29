@@ -1,7 +1,5 @@
 [TYPESCRIPT__BADGE]: https://img.shields.io/badge/typescript-D4FAFF?style=for-the-badge&logo=typescript
 [REACT__BADGE]: https://img.shields.io/badge/React-005CFE?style=for-the-badge&logo=react
-[PROJECT__BADGE]: https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project
-[PROJECT__URL]: https://github.com/SilmarNascimento/test-UOL-fullstack/tree/Silmar_Nascimento-main
 [JAVA__BADGE]: https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white
 [POSTGRES__BADGE]: https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white
 [Docker__BADGE]: https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white
@@ -18,17 +16,19 @@
 </h1>
 
 <p align="center">
-  <a href="#about">Sobre o Projeto</a> • 
+  <a href="#about">Sobre o Projeto</a> •
   <a href="#tech">Tecnologias Utilizadas</a> •
-  <a href="#started">Como Executar</a> • 
-  <a href="#routes">Rotas da Aplicação</a> • 
+  <a href="#started">Como Executar</a> •
+  <a href="#routes">Rotas da Aplicação</a> •
   <a href="#author">Autor</a>
 </p>
 
-<div>
-  <a href="#top" style="float: right;">Top</a>
-  <h2 id="about">📌 Sobre o Projeto </h2>
+<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 0px;">
+  <h2 id="about" style="margin: 0;">📌 Sobre o Projeto</h2>
+  <a href="#top">Top</a>
 </div>
+
+<br>
 
 Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo que usuários visualizem, cadastrem e atualizem clientes. O frontend oferece uma interface intuitiva e se comunica com o backend via API. O backend gerencia e armazena os dados válidos dos clientes, garantindo uma experiência completa de gerenciamento. O deploy foi feito na AWS utilizando uma instância EC2 (free tier), com configuração de User Data para instalação automática de programas como Docker. Variáveis de ambiente foram usadas para configurar o CORS e o endpoint de requisições no frontend, gerenciadas via docker-compose. Um Security Group foi configurado para permitir a comunicação entre frontend e backend, além do acesso externo à aplicação. O armazenamento foi gerenciado com EBS para a persistência de dados da instância.
 
@@ -38,7 +38,6 @@ Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo q
     <img src="./assets/cadastro-cliente-create-user.png" alt="Tela de cadastro" width="400px">
   </p>
 
-
 <div>
   <a href="#top" style="float: right;">Top</a>
   <h2 id="tech">🖥️ Tecnologias Utilizadas</h2>
@@ -46,24 +45,23 @@ Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo q
 
   <h3>Front-end</h3>
 
-  - [React](https://github.com/facebook/react)
-  - [TypeScript](https://github.com/microsoft/TypeScript)
+- [React](https://github.com/facebook/react)
+- [TypeScript](https://github.com/microsoft/TypeScript)
 
   <h3>Back-end</h3>
 
-  - [Java](https://www.oracle.com/java/technologies/java-se-glance.html)
-  - [Spring Boot](https://github.com/spring-projects/spring-boot)
-  - [Hibernate](https://hibernate.org/)
-  - [JUnit5](https://github.com/junit-team/junit5/)
+- [Java](https://www.oracle.com/java/technologies/java-se-glance.html)
+- [Spring Boot](https://github.com/spring-projects/spring-boot)
+- [Hibernate](https://hibernate.org/)
+- [JUnit5](https://github.com/junit-team/junit5/)
 
   <h3>Banco de Dados</h3>
 
-  - [Postgres](https://github.com/postgres/postgres)
+- [Postgres](https://github.com/postgres/postgres)
 
   <h3>Deploy</h3>
 
-  - [AWS](https://aws.amazon.com/)
-
+- [AWS](https://aws.amazon.com/)
 
 <div>
   <a href="#top" style="float: right;">Top</a>
@@ -128,7 +126,7 @@ Após substituir os valores no arquivo de propriedades, você pode subir a aplic
 mvn spring-boot:run
 ```
 
-Esse comando irá iniciar o servidor da aplicação backend. Por padrão, ele estará disponível em http://localhost:8080
+Esse comando irá iniciar o servidor da aplicação backend. Por padrão, ele estará disponível em <http://localhost:8080>
 
 Agora que o backend está rodando, você pode subir o frontend da aplicação. Siga os passos abaixo:
 
@@ -147,7 +145,7 @@ Para iniciar o frontend da aplicação siga o seguinte comando:
 npm run dev
 ```
 
-O frontend estará disponível em http://localhost:3000 e se comunicará com o backend que está rodando em http://localhost:8080.
+O frontend estará disponível em <http://localhost:3000> e se comunicará com o backend que está rodando em <http://localhost:8080>.
 
 Com esses passos, o projeto estará rodando localmente com o banco de dados, backend e frontend funcionando.
 
@@ -173,8 +171,7 @@ cd test-fullstack-gerenciamento-de-cliente
 docker-compose up -d
 ```
 
-O frontend estará disponível em http://localhost:3000 e se comunicará com o backend que está rodando em http://localhost:8080.
-
+O frontend estará disponível em <http://localhost:3000> e se comunicará com o backend que está rodando em <http://localhost:8080>.
 
 <div>
   <a href="#top" style="float: right;">Top</a>
@@ -185,19 +182,19 @@ O frontend estará disponível em http://localhost:3000 e se comunicará com o b
 
 Na tabela abaixo encontra-se as rotas de cada página do frontend e suas descrições:
 ​
-| URL               | Descrição                                          
+
+| URL               | Descrição
 |----------------------|-----------------------------------------------------
 | <kbd>/</kbd>     | página para listar todos os usuários cadastrados
 | <kbd>/create/users</kbd>     | página para cadastrar um novo usuário
 | <kbd>/edit/users/:userId</kbd>     | página para editar um usuário já cadastrado
 
-
-
 <h3 id="route-backend">Rotas do Backend (API)</h3>
 
 Na tabela abaixo encontra-se os endpoints da API e suas descrições:
 ​
-| Método          | URL     | Descrição                                          
+
+| Método          | URL     | Descrição
 |-----------------|-----|-----------------------------------------------------
 | `GET` | <kbd>/api/users</kbd>     | endpoint para listar os usuários cadastrados em páginas
 | `GET` | <kbd>/api/users/:userId</kbd>     | endpoint para recuperar um usuário pelo seu Id
