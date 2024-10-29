@@ -23,8 +23,8 @@
   <a href="#author">Autor</a>
 </p>
 
-<div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ccc; padding-bottom: 0px;">
-  <h2 id="about" style="margin: 0;">📌 Sobre o Projeto</h2>
+<div>
+  <h2 id="about">📌 Sobre o Projeto</h2>
   <a href="#top">Top</a>
 </div>
 
@@ -39,8 +39,8 @@ Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo q
   </p>
 
 <div>
-  <a href="#top" style="float: right;">Top</a>
   <h2 id="tech">🖥️ Tecnologias Utilizadas</h2>
+  <a href="#top">Top</a>
 </div>
 
   <h3>Front-end</h3>
@@ -64,8 +64,8 @@ Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo q
 - [AWS](https://aws.amazon.com/)
 
 <div>
-  <a href="#top" style="float: right;">Top</a>
   <h2 id="started">🚀 Como Executar</h2>
+  <a href="#top">Top</a>
 </div>
 
 <h3>Pre-requisitos</h3>
@@ -174,8 +174,8 @@ docker-compose up -d
 O frontend estará disponível em <http://localhost:3000> e se comunicará com o backend que está rodando em <http://localhost:8080>.
 
 <div>
-  <a href="#top" style="float: right;">Top</a>
   <h2 id="routes">📍 Rotas da Aplicação</h2>
+  <a href="#top">Top</a>
 </div>
 
 <h3 id="route-frontend">Rotas do Frontend</h3>
@@ -204,8 +204,8 @@ Na tabela abaixo encontra-se os endpoints da API e suas descrições:
 Para mais detalhes sobre as rotas da API e exemplos detalhados de requisições e respostas, [clique aqui](./backend/API_DOCUMENTATION.md)
 
 <div>
-  <a href="#top" style="float: right;">Top</a>
   <h2 id="author">📝 Autor</h2>
+  <a href="#top">Top</a>
 </div>
 
 Silmar Fernando do Nascimento
