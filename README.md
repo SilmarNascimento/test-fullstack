@@ -1,4 +1,3 @@
-[JAVASCRIPT__BADGE]: https://img.shields.io/badge/Javascript-000?style=for-the-badge&logo=javascript
 [TYPESCRIPT__BADGE]: https://img.shields.io/badge/typescript-D4FAFF?style=for-the-badge&logo=typescript
 [REACT__BADGE]: https://img.shields.io/badge/React-005CFE?style=for-the-badge&logo=react
 [PROJECT__BADGE]: https://img.shields.io/badge/📱Visit_this_project-000?style=for-the-badge&logo=project
@@ -13,7 +12,6 @@
 
   <span>![react][REACT__BADGE]</span>
   <span>![typescript][TYPESCRIPT__BADGE]</span>
-  <span>![javascript][JAVASCRIPT__BADGE]</span>
   <span>![java][JAVA__BADGE]</span>
   <span>![Postgres][POSTGRES__BADGE]</span>
   <span>![Docker][Docker__BADGE]</span>
@@ -183,14 +181,30 @@ O frontend estará disponível em http://localhost:3000 e se comunicará com o b
   <h2 id="routes">📍 Rotas da Aplicação</h2>
 </div>
 
-Here you can list the main routes of your API, and what are their expected request bodies.
+<h3 id="route-frontend">Rotas do Frontend</h3>
+
+Na tabela abaixo encontra-se as rotas de cada página do frontend e suas descrições:
 ​
-| route               | description                                          
+| URL               | Descrição                                          
 |----------------------|-----------------------------------------------------
 | <kbd>/</kbd>     | página para listar todos os usuários cadastrados
 | <kbd>/create/users</kbd>     | página para cadastrar um novo usuário
 | <kbd>/edit/users/:userId</kbd>     | página para editar um usuário já cadastrado
 
+
+
+<h3 id="route-backend">Rotas do Backend (API)</h3>
+
+Na tabela abaixo encontra-se os endpoints da API e suas descrições:
+​
+| Método          | URL     | Descrição                                          
+|-----------------|-----|-----------------------------------------------------
+| `GET` | <kbd>/api/users</kbd>     | endpoint para listar os usuários cadastrados em páginas
+| `GET` | <kbd>/api/users/:userId</kbd>     | endpoint para recuperar um usuário pelo seu Id
+| `POST` | <kbd>/api/users</kbd>     | endpoint para cadastrar um usuário
+| `PUT` | <kbd>/api/users/:userId</kbd>     | endpoint para alterar algum atributo de um cliente
+
+Para mais detalhes sobre as rotas da API e exemplos detalhados de requisições e respostas, [clique aqui](./backend/API_DOCUMENTATION.md)
 
 <div>
   <a href="#top" style="float: right;">Top</a>
