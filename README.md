@@ -32,7 +32,8 @@
 
 Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo que usuários visualizem, cadastrem e atualizem clientes. O frontend oferece uma interface intuitiva e se comunica com o backend via API. O backend gerencia e armazena os dados válidos dos clientes, garantindo uma experiência completa de gerenciamento. O deploy foi feito na AWS utilizando uma instância EC2 (free tier), com configuração de User Data para instalação automática de programas como Docker. Variáveis de ambiente foram usadas para configurar o CORS e o endpoint de requisições no frontend, gerenciadas via docker-compose. Um Security Group foi configurado para permitir a comunicação entre frontend e backend, além do acesso externo à aplicação. O armazenamento foi gerenciado com EBS para a persistência de dados da instância.
 
-<h3>Layout Web</h3>
+## Layout Web
+
   <p align="center">
     <img src="./assets/cadastro-cliente-home.png" alt="Tela de listagem" width="400px">
     <img src="./assets/cadastro-cliente-create-user.png" alt="Tela de cadastro" width="400px">
@@ -43,23 +44,23 @@ Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo q
   <a href="#top">Top</a>
 </div>
 
-  <h3>Front-end</h3>
+### Front-end
 
 - [React](https://github.com/facebook/react)
 - [TypeScript](https://github.com/microsoft/TypeScript)
 
-  <h3>Back-end</h3>
+### Back-end
 
 - [Java](https://www.oracle.com/java/technologies/java-se-glance.html)
 - [Spring Boot](https://github.com/spring-projects/spring-boot)
 - [Hibernate](https://hibernate.org/)
 - [JUnit5](https://github.com/junit-team/junit5/)
 
-  <h3>Banco de Dados</h3>
+### Banco de Dados
 
 - [Postgres](https://github.com/postgres/postgres)
 
-  <h3>Deploy</h3>
+### Deploy
 
 - [AWS](https://aws.amazon.com/)
 
@@ -68,7 +69,7 @@ Projeto web fullstack desenvolvido como parte de um teste técnico, permitindo q
   <a href="#top">Top</a>
 </div>
 
-<h3>Pre-requisitos</h3>
+### Pre-requisitos
 
 Os pré-requisitos para rodar localmente o projeto são:
 
@@ -80,7 +81,7 @@ O projeto também pode ser executado por containers, sendo assim os pré-requisi
 
 - [Docker](https://www.docker.com/)
 
-<h3>Cloning</h3>
+### Cloning
 
 Para clonar o projeto, abra o terminal e execute o seguinte comando:
 
@@ -88,7 +89,7 @@ Para clonar o projeto, abra o terminal e execute o seguinte comando:
 git clone git@github.com:SilmarNascimento/test-fullstack-gerenciamento-de-cliente.git
 ```
 
-<h3>Executar o Projeto Localmente</h3>
+### Executar o Projeto Localmente
 
 Antes de iniciar o backend, é necessário subir o banco de dados PostgreSQL localmente. Se você já tem o PostgreSQL instalado, inicie o serviço e crie o banco de dados necessário para o projeto. Se preferir, pode usar o Docker para subir o banco rapidamente. Certifique-se de que o banco está rodando na porta `5432` e guarde as credenciais para configurar o backend.
 
@@ -149,7 +150,7 @@ O frontend estará disponível em <http://localhost:3000> e se comunicará com o
 
 Com esses passos, o projeto estará rodando localmente com o banco de dados, backend e frontend funcionando.
 
-<h3>Executar o Projeto com Docker</h3>
+### Executar o Projeto com Docker
 
 Caso queira executar o projeto usando docker, após clonar o projeto, abra o arquivo docker-compose.yaml na raiz do projeto e edite as variáveis de ambiente no serviço de backend para a conexão com o banco de dados. Para a configuração dos endpoints para a requisição do frontend e configuração do CORS da aplicação, renomeie o arquivo `.env.exemple` para `.env` e altere as variáveis abaixo se necessário:
 
@@ -178,7 +179,7 @@ O frontend estará disponível em <http://localhost:3000> e se comunicará com o
   <a href="#top">Top</a>
 </div>
 
-<h3 id="route-frontend">Rotas do Frontend</h3>
+### Rotas do Frontend
 
 Na tabela abaixo encontra-se as rotas de cada página do frontend e suas descrições:
 ​
@@ -189,10 +190,9 @@ Na tabela abaixo encontra-se as rotas de cada página do frontend e suas descri�
 | <kbd>/create/users</kbd>     | página para cadastrar um novo usuário
 | <kbd>/edit/users/:userId</kbd>     | página para editar um usuário já cadastrado
 
-<h3 id="route-backend">Rotas do Backend (API)</h3>
+## Rotas do Backend (API)
 
 Na tabela abaixo encontra-se os endpoints da API e suas descrições:
-​
 
 | Método          | URL     | Descrição
 |-----------------|-----|-----------------------------------------------------

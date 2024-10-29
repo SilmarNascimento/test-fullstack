@@ -2,7 +2,7 @@
 
 Esse documento contém uma descrição detalhada de cada endpoint disponível na API, incluindo os métodos HTTP, URLs, parâmetros esperados, exemplos de requisições, respostas e erros.
 
-<h2>Resumo dos endpoints</h2>
+## Resumo dos endpoints
 
 As rotas da aplicação podem ser visualizadas segundo a tabela abaixo.
 
@@ -13,12 +13,14 @@ As rotas da aplicação podem ser visualizadas segundo a tabela abaixo.
 | `POST` | <kbd>/api/users</kbd>     | endpoint para cadastrar um usuário
 | `PUT` | <kbd>/api/users/:userId</kbd>     | endpoint para alterar algum atributo de um cliente
 
-<h2>Detalhamento dos endpoints</h2>
+## Detalhamento dos endpoints
 
 <div>
-  <a href="#top" style="float: right;">Top</a>
   <h3 id="routes">GET /api/users</h3></h3>
+  <a href="#top">Top</a>
 </div>
+
+<br>
 
 Retorna uma lista paginada de todos os usuários cadastrados.
 
@@ -68,9 +70,11 @@ Content-Type: application/json
 <br>
 
 <div>
-  <a href="#top" style="float: right;">Top</a>
   <h3 id="routes">POST /api/users</h3></h3>
+  <a href="#top">Top</a>
 </div>
+
+<br>
 
 Cria um novo usuário.
 
@@ -136,9 +140,11 @@ Content-Type: application/json
 <br>
 
 <div>
-  <a href="#top" style="float: right;">Top</a>
   <h3 id="routes">PUT /api/users/{userId}</h3></h3>
+  <a href="#top">Top</a>
 </div>
+
+<br>
 
 Atualiza as informações de um usuário existente pelo ID.
 
@@ -196,9 +202,11 @@ Content-Type: application/json
 <br>
 
 <div>
-  <a href="#top" style="float: right;">Top</a>
   <h3 id="routes">DELETE /api/users/{userId}</h3></h3>
+  <a href="#top">Top</a>
 </div>
+
+<br>
 
 Deleta um usuário pelo ID.
 
